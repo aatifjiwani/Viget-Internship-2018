@@ -1,0 +1,40 @@
+<%= render 'templates/navbar' %>
+
+<main class="page-content">
+    <div class="wrapper">
+        <h1>Create New Post:</h1>
+        <div class="form-element">
+        <%= form_for @article, url: {action: 'create'}, html: {class: 'new-form'} do |form| %>
+            
+            <% if @article.errors.any? %>
+                <div class="form-error">
+                    <h4>
+                        <%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:
+                    </h4>
+                    <% @article.errors.full_messages.each do |msg| %>
+                        <p class="form-errors">
+                            <%= msg %>
+                        </p>
+                    <% end %>
+                </div>
+            <% end %>
+            
+            <p class="form-p">
+                <%= form.label 'Title:' %>
+                <%= form.text_field :title, class: 'input-field' %>
+            </p>
+            
+            <p class="form-p">
+                <%= form.label 'Content:' %>
+                <%= form.text_area :body, size: '60x12', class: 'textarea-field' %>
+            </p>
+        
+            <p class="form-p">
+                <%= form.submit 'Create' %>
+            </p>
+        <% end %>
+    </div>
+    </div>
+</main>
+
+<%= render 'templates/footer' %>

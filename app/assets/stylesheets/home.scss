@@ -46,7 +46,7 @@ body {
  * Set `margin-bottom` to maintain vertical rhythm
  */
 h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
+blockquote, pre,
 ul, ol, dl, figure,
 .highlight {
   margin-bottom: 15px; }
@@ -211,7 +211,7 @@ a, a:hover {
     padding: 50px 0;
     flex: 1;
     
-    p {
+    #home-headline {
         padding: 10px;
         margin-left: 10px;
     }
@@ -290,4 +290,13 @@ a, a:hover {
     width: -webkit-calc(100% - (30px / 2));
     width: calc(100% - (30px / 2)); } }
 
-
+.page-article {
+    background-color: rgb(246, 246, 239);
+    border-bottom: 1px solid var(--ink-color);
+    padding: 10px 0px 10px 20px;
+    
+    .article-body {
+        font-size: 12px;
+        margin-left: 19px;
+    }
+}
