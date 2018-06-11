@@ -16,8 +16,6 @@ class ArticlesController < ApplicationController
       redirect_to root_url
     else
       render 'new'
-    end
-  end
 
   def show
     @page_title = "View Article | Haxxor News"
