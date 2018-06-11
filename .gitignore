@@ -22,6 +22,8 @@
 # Ignore uploaded files in development
 /storage/*
 
+/keyfiles/*
+
 /node_modules
 /yarn-error.log
 
