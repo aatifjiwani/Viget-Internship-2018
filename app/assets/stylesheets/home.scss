@@ -299,4 +299,23 @@ a, a:hover {
         font-size: 12px;
         margin-left: 19px;
     }
+    
+    .article-link {
+        font-size: 12px;
+        color: var(--ember-color);
+    }
+    
+    .article-link:hover {
+        color: var(--ink-color);
+    }
+}
+
+.link {
+    padding-top: 15px;
+    font-size: 16px;
+    color: var(--ember-color);
+}
+
+.link:hover {
+    color: var(--ink-color);
 }
