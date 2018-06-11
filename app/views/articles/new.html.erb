@@ -2,7 +2,7 @@
     <div class="wrapper">
         <h1>Create New Post:</h1>
         <div class="form-element">
-        <%= form_for @article, url: {action: 'create'}, html: {class: 'new-form'} do |form| %>
+        <%= form_for @article, url: {action: 'create'}, html: {class: 'new-form', multipart: true} do |form| %>
             
             <% if @article.errors.any? %>
                 <div class="form-error">
