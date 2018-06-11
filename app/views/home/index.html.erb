@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 
-<header class="site-header" role="banner">
-  <div class="wrapper">
-    <p class="site-title" >Haxxor News</p>
-    <nav class="site-nav">
-      <div class="trigger">
-        <%= link_to 'Create Post', nil, {class: 'page-link'} %>
-      </div>
-    </nav>
-  </div>
-</header>
+<%= render 'templates/navbar' %>
 
 <main class="page-content">
-  <div class="wrapper">
-    <div class="page-headline">
-      <p>View most recent posts:</p>
+    <div class="wrapper">
+        <div class="page-headline">
+            <p id="home-headline">View most recent posts:</p>
+        </div>
+        <% if @articles.any? %>
+          <% @articles.each do |article| %>
+            <div class="page-article">
+                <p class="article-title"><span class="article-id"><%= article.id %>. </span><%= article.title %></p>
+                <p class="article-body"><%= article.body %></p>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="page-article">
+            <p class="article-title">Nothing found...</p>
+          </div>
+        <% end %>
     </div>
-  </div>
 </main>
 
 <%= render 'templates/footer' %>
