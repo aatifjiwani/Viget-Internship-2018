@@ -26,6 +26,11 @@
                 <%= form.label 'Content:' %>
                 <%= form.text_area :body, size: '60x12', class: 'textarea-field' %>
             </p>
+            
+            <p class="form-p">
+                <%= form.label 'Upload picture:' %>
+                <%= form.file_field :avatar %>
+            </p>
         
             <p class="form-p">
                 <%= form.submit 'Create' %>
