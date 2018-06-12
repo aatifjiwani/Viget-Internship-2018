@@ -25,8 +25,20 @@
             </p>
             
             <p class="form-p">
-                <%= form.label 'Content:' %>
-                <%= form.text_area :body, class: 'textarea-field' %>
+                <%= form.label "Content:" %>
+                <%= form.text_area :body, class: 'textarea-field', id: 'editor' %>
+                <!-- 
+                    @source https://cdn.ckeditor.com/#ckeditor5
+                -->
+                <script>
+                  ClassicEditor
+                    .create( document.querySelector( '#editor' ), {
+                        toolbar: [ 'heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'link', 'blockQuote' ]
+                    }
+                    ) .catch( error => {
+                        console.log( error );
+                    } );
+                </script>
             </p>
             
             <p class="form-p">

@@ -21,8 +21,7 @@
     padding-bottom: 10px;
 }
 
-.form-element .textarea-field {
-    width: calc(100%);
+.form-element .ck {
     height: 10vw;
 }
 
@@ -74,5 +73,9 @@
 
 .form-element .form-error h4 {
     color: var(--ember-color);
+}
+
+span.required {
+    color: red;
 }
 
