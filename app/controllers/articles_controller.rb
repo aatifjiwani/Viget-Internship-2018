@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+<<<<<<< HEAD
   def new
     @page_title = "Create Post | Haxxor News"
     @article = Article.new
@@ -27,9 +28,9 @@ class ArticlesController < ApplicationController
     @article.destroy
     redirect_to root_url
   end
-
-  private
-  def article_params
-    params.require(:article).permit(:title, :body)
-  end
+      
+	private
+	def article_param
+		params.require(:article).permit(:title, :body, :content_img)
+	end
 end
