@@ -4,6 +4,9 @@
     <div class="wrapper">
         <h1><%= @article.title %></h1>
         <p><%= @article.body %></p>
+        <% if @article.avatar.attached? %>
+            <img src='<%= url_for(@article.avatar) %>'/>
+        <% end %>
         <div>
             <%= link_to 'Back', home_index_path, {:class => 'link'} %>
         </div>
