@@ -5,16 +5,14 @@
       <p id="home-headline">View most recent posts:</p>
     </div>
     <% if @articles.any? %>
-      <% article_num = 1 %>
-      <% @articles.each do |article| %>
+      <% @articles.each_with_index do |article, article_num| %>
         <div class="page-article">
-          <p class="article-title"><span class="article-id"><%= article_num %>. </span><%= article.title %>
-            <%= link_to 'Show', article_path(article), {class: 'article-link'} %> /
+          <p class="article-title"><span class="article-id"><%= article_num + 1 %>. </span><%= article.title %>
+            <%= link_to 'Show', article_path(article), {:class => 'article-link'} %> /
             <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?'}, class: "article-link" %>
           </p>
           <p class="article-body"><%= article.body %></p>
         </div>
-        <% article_num = article_num + 1 %>
       <% end %>
     <% else %>
       <div class="page-article">
