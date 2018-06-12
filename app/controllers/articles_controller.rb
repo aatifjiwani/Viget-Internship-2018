@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
     end
     
     def create
-        @article = Article.new(article_param)
+        @article = Article.new(article_params)
         
         if @article.save
             redirect_to :controller => 'home', :action => 'index'
@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
     end
     
     private
-    def article_param
+    def article_params
         params.require(:article).permit(:title, :body)
     end
 end
