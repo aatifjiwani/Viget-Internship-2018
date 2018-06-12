@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+<<<<<<< HEAD
   def new
     @pg_title = "Create Post | Haxxor News"
     @article = Article.new
