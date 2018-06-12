@@ -11,7 +11,7 @@
             <%= link_to 'Show', article_path(article), {class: 'article-link'} %> /
             <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?'}, class: "article-link" %>
           </p>
-          <p class="article-body"><%= article.body %></p>
+          <p class="article-body"><%= strip_tags(article.body)[0..160].gsub(/\s\w+\s*$/,'...') %></p>
         </div>
       <% end %>
     <% else %>
