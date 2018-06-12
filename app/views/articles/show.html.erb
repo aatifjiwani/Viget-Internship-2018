@@ -1,0 +1,13 @@
+<%= render 'templates/navbar' %>
+
+<main class="page-content">
+    <div class="wrapper">
+        <h1><%= @article.title %></h1>
+        <p><%= @article.body %></p>
+        <div>
+            <%= link_to 'Back', home_index_path, {:class => 'link'} %>
+        </div>
+    </div>
+</main>
+
+<%= render 'templates/footer' %>
