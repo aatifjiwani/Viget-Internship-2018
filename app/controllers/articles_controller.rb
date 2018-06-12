@@ -1,11 +1,11 @@
 class ArticlesController < ApplicationController
   def new
-    @pg_title = "Create Post | Haxxor News"
+    @page_title = "Create Post | Haxxor News"
     @article = Article.new
   end
 
   def index
-    @pg_title = "Home | Haxxor News"
+    @page_title = "Home | Haxxor News"
     @articles = Article.order(id: :desc)
   end
 
@@ -20,6 +20,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @page_title = "View Article | Haxxor News"
     @article = Article.find(params[:id])
   end
 
