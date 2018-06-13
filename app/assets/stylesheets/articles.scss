@@ -47,7 +47,7 @@
 .form-element .tel-number-field:focus, 
 .form-element .textarea-field:focus,  
 .form-element .select-field:focus{
-    border: 1px solid #0C0;
+    border: 1px solid var(--ember-color);
 }
 
 
