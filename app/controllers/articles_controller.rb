@@ -16,6 +16,8 @@ class ArticlesController < ApplicationController
       redirect_to root_url
     else
       render 'new'
+    end
+  end
 
   def show
     @page_title = "View Article | Haxxor News"
@@ -27,9 +29,9 @@ class ArticlesController < ApplicationController
     @article.destroy
     redirect_to root_url
   end
-      
-	private
-	def article_param
-		params.require(:article).permit(:title, :body, :content_img)
-	end
+
+  private
+  def article_params
+    params.require(:article).permit(:title, :body, :content_img)
+  end
 end

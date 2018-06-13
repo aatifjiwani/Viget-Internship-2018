@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Articles', type: :feature do
   it "Lets you create an article" do
     visit new_article_path
+    
+    #binding.pry
 
     fill_in "Title:", with: "ArticleTest"
     fill_in "Content:", with: "This is content for this article"
