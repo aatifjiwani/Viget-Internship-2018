@@ -1,16 +1,12 @@
-<%= render 'templates/navbar' %>
-
 <main class="page-content">
-    <div class="wrapper">
-        <h1><%= @article.title %></h1>
-        <%= @article.body.html_safe %>
-        <% if @article.content_img.attached? %>
-            <img src='<%= url_for(@article.content_img) %>'/>
-        <% end %>
-        <div>
-            <%= link_to 'Back', home_index_path, {class: 'link'} %>
-        </div>
+  <div class="wrapper">
+    <h1><%= @article.title %></h1>
+    <%= @article.body.html_safe %>
+    <% if @article.content_img.attached? %>
+      <img src='<%= url_for(@article.content_img) %>' class='article-img'/>
+    <% end %>
+    <div>
+      <%= link_to 'Back', home_index_path, {class: 'link article-bubble-link'} %>
     </div>
+  </div>
 </main>
-
-<%= render 'templates/footer' %>

@@ -79,3 +79,21 @@ span.required {
     color: red;
 }
 
+.article-img {
+    width: auto;
+    max-height: 200px;
+}
+
+.article-bubble-link {
+    background-color: var(--posy-color);
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    font-size: 18px;
+}
+
+.article-bubble-link:hover {
+    background-color: var(--ink-color);
+}
