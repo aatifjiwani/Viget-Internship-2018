@@ -1,0 +1,52 @@
+<main class="page-content">
+  <div class="wrapper">
+    <h1>Create New Account:</h1>
+    <div class="form-element">
+      <%= form_for @user, url: {action: 'create'}, html: {class: 'new-form user-form', multipart: true} do |form| %>
+      
+        <% if @user.errors.any? %>
+          <div class="form-error">
+            <h4>
+              <%= pluralize(@user.errors.count, "error") %> prohibited this article from being saved:
+            </h4>
+            <% @user.errors.full_messages.each do |msg| %>
+              <p class="form-errors">
+                <%= msg %>
+              </p>
+            <% end %>
+          </div>
+        <% end %>
+        <ul class="form-ul">
+          <li class="form-li li-user">
+            <%= form.label :username, 'Username:' %>
+            <%= form.text_field :username, class: 'input-field form-user' %>
+          </li>
+
+          <li class="form-li li-email">
+            <%= form.label :email, 'Email:' %>
+            <%= form.text_field :email, class: 'input-field form-email' %>
+          </li>
+
+          <li class="form-li li-password">
+            <%= form.label :password, 'Password:' %>
+            <%= form.password_field :password, class: 'input-field form-password' %>
+          </li>
+
+          <li class="form-li li-conf-password">
+            <%= form.label :password_confirmation, 'Confirm Password:' %>
+            <%= form.password_field :password_confirmation, class: 'input-field form-password' %>
+          </li>
+          
+          <li class="form-li li-upload">
+            <%= form.label 'Upload picture:' %>
+            <%= form.file_field :profile_img %>
+          </li>
+
+          <li class="form-li li-submit">
+            <%= form.submit 'Sign Up' %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</main>

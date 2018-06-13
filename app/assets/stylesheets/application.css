@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+.nav-acct {
+ float: right;
+}
+
+.span-ink {
+ color: var(--ink-color);
+}
+
+.span-ember {
+ color: var(--ember-color);
+}
+
+.span-posy {
+ color: var(--posy-color);
+}
+
+.span-nav {
+ font-weight: bold;
+ color: #d9e1fd;
+}
