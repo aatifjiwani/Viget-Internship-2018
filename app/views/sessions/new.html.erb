@@ -1,0 +1,28 @@
+<main class="page-content">
+  <div class="wrapper">
+    <h1>Sign In:</h1>
+    <p>
+      <span class="create-acct">Don't have an account? </span>
+      <%= link_to 'Create One', new_user_path, {class: 'create-link'} %>
+    </p>
+    <div class="form-element">
+      <%= form_tag sessions_path, class: 'new-form user-form sign-in-form' do %>
+        <ul class="form-ul">
+          <li class="form-li li-user">
+            <%= label_tag :username, 'Username:' %>
+            <%= text_field_tag :username, nil, {class: 'input-field form-user'} %>
+          </li>
+
+          <li class="form-li li-password">
+            <%= label_tag :password, 'Password:' %>
+            <%= password_field_tag :password, nil, {class: 'input-field form-password'} %>
+          </li>
+
+          <li class="form-li li-submit">
+            <%= submit_tag 'Sign In' %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</main>

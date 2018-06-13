@@ -1,0 +1,19 @@
+// Place all the styles related to the Sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+span.create-acct {
+    font-weight: bold;
+}
+
+a.create-link {
+    color: var(--ember-color);
+    text-decoration: none;
+}
+
+a.create-link:hover {
+    color: var(--ink-color);
+}
+
+.sign-in-form {
+    margin-top: 20px; 
+}
