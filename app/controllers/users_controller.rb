@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @page_title = "Create Account | Haxxor News"
     @user = User.new
   end
-  
+
   def create
     @user = User.new(user_params)
     #binding.pry
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-  
+
   private
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation, :profile_img)

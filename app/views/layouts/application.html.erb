@@ -7,13 +7,13 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-      
+
     <link href="https://fonts.googleapis.com/css?family=Arvo:400,700" rel="stylesheet"> 
-    
+
     <!-- 
-        @source https://cdn.ckeditor.com/#ckeditor5
-    -->
-    
+@source https://cdn.ckeditor.com/#ckeditor5
+-->
+
     <script src="https://cdn.ckeditor.com/ckeditor5/10.0.1/classic/ckeditor.js">
     </script>
   </head>
@@ -24,44 +24,47 @@
         <p class="site-title" >Haxxor News</p>
         <nav class="site-nav">
           <div class="trigger">
-              <%= link_to 'Home', root_url, {class: 'page-link'} %>
-              <% if current_user %>
-                <%= link_to 'Create Post', new_article_path, {class: 'page-link'} %>
-                <%= link_to 'Sign Out', sessions_path, method: :delete, class: 'page-link-bubble' %>
-              <% else %>
-                <p class="nav-acct"><span class="span-nav">Already have an account? </span><%= link_to 'Sign In', new_sessions_path, {class: 'page-link-bubble'} %></p>
-              <% end %>
-              
-              
+            <%= link_to 'Home', root_url, {class: 'page-link'} %>
+            <% if current_user %>
+              <%= link_to 'Create Post', new_article_path, {class: 'page-link'} %>
+              <%= link_to 'Sign Out', sessions_path, method: :delete, class: 'page-link-bubble' %>
+            <% else %>
+              <p class="nav-acct">
+                <span class="span-nav">Already have an account? </span>
+                <%= link_to 'Sign In', new_sessions_path, {class: 'page-link-bubble'} %>
+              </p>
+            <% end %>
+
+
           </div>
         </nav>
       </div>
     </header>
-    
+
     <%= yield %>
-    
+
     <footer class="site-footer">
       <div class="wrapper">
         <div class="footer-col-wrapper">
           <div class="footer-col footer-col-1">
-              <p>&copy;2017 by Aatif Jiwani</p>
+            <p>&copy;2017 by Aatif Jiwani</p>
           </div>
 
           <div class="footer-col footer-col-2">
             <p>This site is not meant to replace Hacker News. 
-            Please refer to their site at <%= link_to 'news.ycombinator.com', 'http://news.ycombinator.com' %></p> 
+              Please refer to their site at <%= link_to 'news.ycombinator.com', 'http://news.ycombinator.com' %></p> 
           </div>
-    
-      
+
+
           <div class="footer-col footer-col-3">
             <p>Created during my 2018 Rails Developer Internship at 
               <%= link_to 'Viget', 'http://www.viget.com' %>
-              </p>
+            </p>
           </div>
         </div>
       </div>
 
     </footer>
-    
+
   </body>
 </html>

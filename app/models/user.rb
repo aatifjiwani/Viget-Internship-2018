@@ -4,9 +4,9 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true, length: {minimum: 6}
 
   validates :email, presence: true, uniqueness: true, format: EMAIL_REGEX
-  
+
   has_one_attached :profile_img
-  
+
   has_secure_password
-  
+
 end

@@ -2,60 +2,60 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .form-ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 90%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 90%;
 }
 
 .form-li {
-  width: 100%;
+    width: 100%;
 }
 
 @media (min-width: 600px) {
-  .form-li {
-    width: 50%;
-  }
+    .form-li {
+        width: 50%;
+    }
 }
 @media (min-width: 800px) {
-  .li-user {
-    width: 40%;
-  }
-  
-  .li-email {
-    width: 50%
-  }
-  
-  .li-password, .li-conf-password {
-    width: 40%;
-  }
-  
-  .li-submit {
-    width: 100%;
-  }
+    .li-user {
+        width: 40%;
+    }
 
-  
+    .li-email {
+        width: 50%
+    }
+
+    .li-password, .li-conf-password {
+        width: 40%;
+    }
+
+    .li-submit {
+        width: 100%;
+    }
+
+
 }
 
 .user-form{
-  
-  li:nth-child(3), li:nth-child(4), li:nth-child(5) {
-    label {
-      margin-top: 20px;
+
+    li:nth-child(3), li:nth-child(4), li:nth-child(5) {
+        label {
+            margin-top: 20px;
+        }
     }
-  }
-  
-  .li-submit {
-    margin-top: 20px;
-  }
-  
-  .form-user, .form-email, .form-password {
-    width: 90% !important;
-  }
+
+    .li-submit {
+        margin-top: 20px;
+    }
+
+    .form-user, .form-email, .form-password {
+        width: 90% !important;
+    }
 
 }

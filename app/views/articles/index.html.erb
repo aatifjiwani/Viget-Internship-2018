@@ -5,18 +5,20 @@
     </div>
     <% if @articles.any? %>
       <% @articles.each_with_index do |article, article_num| %>
-        <div class="page-article">
-          <p class="article-title"><span class="article-id"><%= article_num + 1 %>. </span><%= article.title %>
-            <%= link_to 'Show', article_path(article), {class: 'article-link'} %> /
-            <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?'}, class: "article-link" %>
-          </p>
-          <p class="article-body"><%= strip_tags(article.body)[0..160].gsub(/\s\w+\s*$/,'...') %></p>
-        </div>
+      <div class="page-article">
+        <p class="article-title"><span class="article-id"><%= article_num + 1 %>. </span><%= article.title %>
+          <%= link_to 'Show', article_path(article), {class: 'article-link'} %> /
+          <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?'}, class: "article-link" %>
+        </p>
+        <p class="article-body">
+          <%= strip_tags(article.body)[0..160].gsub(/\s\w+\s*$/,'...') %>
+        </p>
+      </div>
       <% end %>
     <% else %>
-      <div class="page-article">
-        <p class="article-title">Nothing found...</p>
-      </div>
+    <div class="page-article">
+      <p class="article-title">Nothing found...</p>
+    </div>
     <% end %>
   </div>
 </main>
