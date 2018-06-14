@@ -147,6 +147,11 @@ a, a:hover {
         font-size: 12px;
         color: var(--ember-color);
     }
+    
+    .article-user {
+        font-weight: bold;
+        font-size: 14px;
+    }
 
     .article-link:hover {
         color: var(--ink-color);

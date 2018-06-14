@@ -4,4 +4,6 @@ class Article < ApplicationRecord
   validates :body, presence: true
 
   has_one_attached :content_img
+  
+  belongs_to :user
 end

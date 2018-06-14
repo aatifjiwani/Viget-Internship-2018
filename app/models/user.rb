@@ -8,5 +8,7 @@ class User < ApplicationRecord
   has_one_attached :profile_img
 
   has_secure_password
+  
+  has_many :articles, dependent: :destroy
 
 end
