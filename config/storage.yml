@@ -17,9 +17,19 @@ local:
 # Remember not to checkin your GCS keyfile to a repository
 google:
    service: GCS
-   project: "My First Project"
-   credentials: <%= Rails.root.join("keyfiles/gcskeyfile.json") %>
-   bucket: "haxxornews-img-container"
+   credentials: 
+    type: "service_account"
+    project_id: ENV["GCS_PROJECT_ID"] || Rails.application.credentials.gcs_project_id
+    private_key_id: ENV["GCS_PRIVATE_KEY_ID"] || Rails.application.credentials.gcs_private_key_id
+    private_key: ENV["GCS_PRIVATE_KEY"] || Rails.application.credentials.gcs_private_key
+    client_email: ENV["GCS_CLIENT_EMAIL"] || Rails.application.credentials.gcs_client_email
+    client_id: ENV["GCS_CLIENT_ID"] || Rails.application.credentials.gcs_client_id
+    auth_uri: "https://accounts.google.com/o/oauth2/auth"
+    token_uri: "https://accounts.google.com/o/oauth2/token"
+    auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs"
+    client_x509_cert_url: ENV["GCS_CLIENT_X509_CERT_URL"] || Rails.application.credentials.gcs_client_x509_cert_url
+    project: "My First Project"
+    bucket: "haxxornews-img-container"
 
 # Use rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
 # microsoft:
