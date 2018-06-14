@@ -49,7 +49,8 @@ ActiveRecord::Schema.define(version: 2018_06_14_172034) do
     t.string "username", null: false
     t.string "email", null: false
     t.string "password_digest"
-    t.index ["username", "email"], name: "index_users_on_username_and_email", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end
