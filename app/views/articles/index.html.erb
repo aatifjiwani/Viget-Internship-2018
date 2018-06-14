@@ -10,6 +10,7 @@
             <span class="article-id"><%= article_num + 1 %>. </span>
           </p>
           
+          
           <% if article.user.profile_img.attached? %>
             <img src='<%= url_for(article.user.profile_img) %>' class='article-img'/>
           <% else %>
@@ -39,7 +40,7 @@
       <% end %>
     <% else %>
       <div class="page-article">
-        <p class="article-title">Nothing found...</p>
+        <p class="article-title" style="width: 100%">Nothing found...</p>
       </div>
     <% end %>
   </div>
