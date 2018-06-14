@@ -5,26 +5,37 @@
     </div>
     <% if @articles.any? %>
       <% @articles.each_with_index do |article, article_num| %>
-      <div class="page-article">
-        <p class="article-title">
-          <span class="article-id"><%= article_num + 1 %>. </span>
-          <%= article.title %>
+        <div class="page-article">
+          <p class="article-title">
+            <span class="article-id"><%= article_num + 1 %>. </span>
+          </p>
           
-          <% if article.user %>
-            <span class="article-user">by <%= article.user.username %></span>
+          <% if article.user.profile_img.attached? %>
+            <img src='<%= url_for(article.user.profile_img) %>' class='article-img'/>
+          <% else %>
+            <img src="/assets/no-profile-img.jpg" class='article-img'/>
           <% end %>
-          
-          <%= link_to 'Show', article_path(article), {class: 'article-link'} %> 
-          
-          <% if check_parent(article) %>
-            / <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?'}, class: "article-link" %>
-          <% end %>
-          
-        </p>
-        <p class="article-body">
-          <%= preview_body(article.body) %>
-        </p>
-      </div>
+
+          <div class="article-contain">
+            <p>
+              <%= article.title %>
+
+              <% if article.user %>
+                <span class="article-user">by <%= article.user.username %></span>
+              <% end %>
+
+              <%= link_to 'Show', article_path(article), {class: 'article-link'} %> 
+
+              <% if check_parent(article) %>
+                / <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?'}, class: "article-link" %>
+              <% end %>
+            </p>
+
+            <p class="article-body">
+              <%= preview_body(article.body) %>
+            </p>
+          </div> 
+        </div>
       <% end %>
     <% else %>
       <div class="page-article">

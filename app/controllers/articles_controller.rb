@@ -38,7 +38,7 @@ class ArticlesController < ApplicationController
   
   #Crops the text to 160 chars and adds '...' to the end
   def preview_body(body)
-    strip_tags(body)[0..160].gsub(/\s\w+\s*$/,'...')
+    strip_tags(body)[0..155].gsub(/\s\w+\s*$/,'...')
   end
   helper_method :preview_body
   
