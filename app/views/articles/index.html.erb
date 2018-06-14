@@ -11,14 +11,14 @@
           <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?'}, class: "article-link" %>
         </p>
         <p class="article-body">
-          <%= strip_tags(article.body)[0..160].gsub(/\s\w+\s*$/,'...') %>
+          <%= preview_body(article.body) %>
         </p>
       </div>
       <% end %>
     <% else %>
-    <div class="page-article">
-      <p class="article-title">Nothing found...</p>
-    </div>
+      <div class="page-article">
+        <p class="article-title">Nothing found...</p>
+      </div>
     <% end %>
   </div>
 </main>

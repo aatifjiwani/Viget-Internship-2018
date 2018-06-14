@@ -14,3 +14,10 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+function createFormattingToolBar() {
+    ClassicEditor.create( document.querySelector( '#article_body' ), {
+      toolbar: [ 'heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'link', 'blockQuote' ]
+    }) .catch( error => {
+      console.log( error );
+    } );
+}

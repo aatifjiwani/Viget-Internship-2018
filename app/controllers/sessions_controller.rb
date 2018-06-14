@@ -18,9 +18,4 @@ class SessionsController < ApplicationController
     reset_session
     redirect_to articles_path
   end
-
-  private
-  def find_user
-
-  end
 end

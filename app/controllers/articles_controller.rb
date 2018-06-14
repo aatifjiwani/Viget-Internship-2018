@@ -1,4 +1,7 @@
+require 'action_view'
 class ArticlesController < ApplicationController
+  include ActionView::Helpers::SanitizeHelper
+  
   def new
     @page_title = "Create Post | Haxxor News"
     @article = Article.new
@@ -29,6 +32,12 @@ class ArticlesController < ApplicationController
     @article.destroy
     redirect_to root_url
   end
+  
+  #Crops the text to 160 chars and adds '...' to the end
+  def preview_body(body)
+    strip_tags(body)[0..160].gsub(/\s\w+\s*$/,'...')
+  end
+  helper_method :preview_body
 
   private
   def article_params
