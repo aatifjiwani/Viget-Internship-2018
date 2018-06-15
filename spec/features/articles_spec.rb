@@ -1,15 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Articles', type: :feature do
-  context 'with already signed in user' do
-    let!(:user) {create(:user)}
-    
+  context 'with already signed in user' do    
     before do
-      visit new_sessions_path
-      fill_in "Username:", with: user.username
-      fill_in "Password:", with: user.password
-      click_button 'Sign In'
-      
+      login_user()
     end
     
     it "Lets you create an article" do
@@ -25,16 +19,8 @@ RSpec.describe 'Articles', type: :feature do
   end
 
   context 'with existing articles'do
-    let!(:another_user) {create(:user, username: 'demouser2', email: 'demouser2@gmail.com')}
-    
     before do
-      visit new_sessions_path
-      fill_in "Username:", with: another_user.username
-      fill_in "Password:", with: another_user.password
-      click_button 'Sign In'
-    end
-    
-    before do
+      another_user = login_user(name: 'demouser2', email: 'demouser2@gmail.com')
       create(:article, title: 'First Article', user: another_user)
       create(:article, title: 'Second Article', user: another_user)
       visit root_url
