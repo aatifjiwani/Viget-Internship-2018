@@ -1,0 +1,21 @@
+<main class="page-content">
+  <div class="wrapper">
+    <h1>Enter the email associated with your account:</h1>
+    <%= render partial: 'layouts/flash' %>
+    
+    <div class="form-element">
+      <%= form_tag password_reset_path, class: 'new-form user-form sign-in-form' do %>
+        <ul class="form-ul">
+          <li class="form-li li-user">
+            <%= label_tag :email, 'Email:' %>
+            <%= text_field_tag :email, nil, {class: 'input-field form-user'} %>
+          </li>
+
+          <li class="form-li li-submit">
+            <%= submit_tag 'Reset Password' %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</main>
