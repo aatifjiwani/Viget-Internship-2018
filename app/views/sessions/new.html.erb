@@ -1,5 +1,6 @@
 <main class="page-content">
   <div class="wrapper">
+    <%= render partial: 'layouts/flash' %>
     <h1>Sign In:</h1>
     <p>
       <span class="create-acct">Don't have an account? </span>
@@ -21,8 +22,14 @@
           <li class="form-li li-submit">
             <%= submit_tag 'Sign In' %>
           </li>
+          
         </ul>
+        <p style="margin-top: 20px;">
+          <span class="create-acct">Forgot your password? </span>
+          <%= link_to 'Reset Password', new_password_reset_path, {class: 'create-link'} %>
+        </p>
       <% end %>
     </div>
+    
   </div>
 </main>

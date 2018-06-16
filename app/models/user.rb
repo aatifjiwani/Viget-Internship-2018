@@ -10,5 +10,7 @@ class User < ApplicationRecord
   has_secure_password
   
   has_many :articles, dependent: :destroy
+  
+  has_secure_token :password_token
 
 end

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.regenerate_password_token
     if @user.save
       session[:user_id] = @user.id
       redirect_to articles_path
