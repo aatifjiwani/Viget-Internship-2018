@@ -8,6 +8,8 @@ class Article < ApplicationRecord
   belongs_to :user
   
   def parent_is?(user)
-    user.id == self.user.id
+    if user
+      user.id == self.user.id
+    end
   end
 end
