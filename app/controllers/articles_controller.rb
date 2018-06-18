@@ -2,7 +2,7 @@ require 'action_view'
 class ArticlesController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
   
-  before_action :logged_in, only: [:create, :destroy, :new]
+  before_action :require_logged_in, only: [:create, :destroy, :new]
   
   def new
     @page_title = "Create Post | Haxxor News"
@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @current_user ||= User.find(session[:user_id])
+    @current_user = current_user
     @article = @current_user.articles.new(article_params)
 
     if @article.save
@@ -41,11 +41,6 @@ class ArticlesController < ApplicationController
     strip_tags(body)[0..155].gsub(/\s\w+\s*$/,'...')
   end
   helper_method :preview_body
-  
-  def check_parent(article)
-    article.user_id == session[:user_id]
-  end
-  helper_method :check_parent
 
   private
   def article_params

@@ -23,7 +23,6 @@ RSpec.describe 'User Article Interaction', type: :feature do
       
       it 'allows you to delete your own article' do
         visit root_url
-        binding.pry
         expect(page).to have_content 'Delete'
         click_on 'Delete'
         expect(page).to_not have_content 'Linking article'

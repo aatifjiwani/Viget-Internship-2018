@@ -11,11 +11,11 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
   
-  def logged_in 
+  def require_logged_in 
     unless session[:user_id]
       redirect_to new_sessions_path
     end
   end
   
-  helper_method :logged_in
+  helper_method :require_logged_in
 end

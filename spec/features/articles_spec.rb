@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Articles', type: :feature do
   context 'with already signed in user' do    
     before do
-      login_user()
+      login_user
     end
     
     it "Lets you create an article" do
