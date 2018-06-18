@@ -22,7 +22,6 @@ RSpec.describe 'User Password Reset', type: :feature do
         fill_in 'Email:', with: user.email
         expect{click_on 'Reset Password'}.to change{enqueued_jobs.size}.by(1)
         expect(page).to have_content "We've sent a reset password link to the given email."
-        binding.pry
         expect {
           perform_enqueued_jobs do
             PasswordResetMailer.with(user: user, token: user.password_token).reset_email.deliver_later
