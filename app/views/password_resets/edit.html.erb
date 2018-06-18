@@ -1,0 +1,30 @@
+<main class="page-content">
+  <div class="wrapper">
+    <h1>Reset Password:</h1>
+    <%= render partial: 'shared/flash' %>
+    <p>
+      <span class="create-acct">If you remember your password, simply </span>
+      <%= link_to 'sign in', new_sessions_path, {class: 'create-link'} %>
+    </p>
+    <div class="form-element">
+      <%= form_tag password_reset_path, method: :put, class: 'new-form user-form sign-in-form' do %>
+        <ul class="form-ul">
+          <li class="form-li li-password">
+            <%= label_tag :password, 'New Password:' %>
+            <%= password_field_tag :password, nil, {class: 'input-field form-password'} %>
+          </li>
+          
+          <li class="form-li li-conf-password">
+            <%= label_tag :password_confirmation, 'Confirm Password:' %>
+            <%= password_field_tag :password_confirmation, nil, {class: 'input-field form-password'} %>
+          </li>
+
+          <li class="form-li li-submit">
+            <%= submit_tag 'Reset Password' %>
+          </li>
+          
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</main>

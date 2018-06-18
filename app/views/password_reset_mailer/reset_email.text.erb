@@ -1,0 +1,10 @@
+Hey, <%= @user.username %>!
+===============================================
+ 
+You have successfully requested to reset your password.
+If you didn't request for you password to be changed, simply ignore this message.
+ 
+To reset your password, please click this link:
+<%= edit_password_reset_url(token: @token, email: @email) %>.
+
+Thanks for using Haxxor News and have a great day!

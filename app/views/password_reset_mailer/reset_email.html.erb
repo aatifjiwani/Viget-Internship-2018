@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div class="mail-body">
+      <h1>Hey <%= @user.username %>!</h1>
+      <p>
+        You have successfully requested to reset your password. 
+        <br>
+        If you didn't request for you password to be changed, simply ignore this message.
+      </p>
+      <p>
+        To reset your password, please click this link:<br> 
+        <%= edit_password_reset_url(token: @token, email: @email) %>.
+      </p>
+      <p>Thanks for using Haxxor News and have a great day!</p>
+    </div>
+  </body>
+</html>
