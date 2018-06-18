@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2018_06_15_172223) do
     t.string "password_digest"
     t.string "password_token"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["password_token"], name: "index_users_on_password_token", unique: true
+    t.index ["password_token"], name: "index_users_on_password_token"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 

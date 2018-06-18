@@ -1,9 +1,10 @@
 class PasswordResetMailer < ApplicationMailer
-  default from: 'nflkiddo.productions@gmail.com'
+  default from: 'no_reply@haxxornews.com'
 
   def reset_email
     @user = params[:user]
     @token = params[:token]
-    mail(to: @user.email, subject: 'Password Reset')
+    @email = @user.email
+    mail(to: @email, subject: 'Haxxor News | Password Reset')
   end
 end
