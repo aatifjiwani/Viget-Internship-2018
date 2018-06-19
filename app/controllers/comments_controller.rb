@@ -3,7 +3,6 @@ class CommentsController < ApplicationController
   
   def create
     @comment = @parent.comments.new(comment_params)
-    binding.pry
     if @comment.save
       flash[:notice] = "Comment saved."
       redirect_to article_path(@comment.parent_post)

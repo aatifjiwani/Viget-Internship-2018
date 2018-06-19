@@ -27,3 +27,20 @@ function createReplyToolBar() {
       toolbar: [ 'heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'link', 'blockQuote' ], width: 400, height: 300
     });
 }
+
+
+function collapseReplyDiv(name) {
+    var link = "link-" + name;
+    document.getElementById(link).style["display"] = "none";
+    
+    var div = "form-" + name;
+    document.getElementById(div).style["display"] = "block"; 
+}
+
+function revCollapseReplyDiv(name) {
+    var link = "link-" + name;
+    document.getElementById(link).style["display"] = "block";
+    
+    var div = "form-" + name;
+    document.getElementById(div).style["display"] = "none"; 
+}

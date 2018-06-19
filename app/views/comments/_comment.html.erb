@@ -1,7 +1,28 @@
 <li class="comment">
-  <h3><%= comment.author %></h3>
- 
-  <div class="body">
-    <%= comment.body.html_safe %>
-  </div>
+  <p class="author"><strong><%= comment.author %></strong></p>
+  <%= comment.body.html_safe %>
+  <% if current_user %>
+    <a class="create-link" id="link-collapse-<%= comment.id %>" onclick="collapseReplyDiv('collapse-<%= comment.id %>')" style="font-size: 12px;">Reply</a>
+      <div class="form-comment" id="form-collapse-<%= comment.id %>" style="display: none">
+        <%= form_with url: comment_comments_path(comment), html: {class: 'new-form' } do |form| %>
+            <p class="form-p">
+              <%= form.label :body, 'Enter comment:' %>
+              <%= form.cktext_area :body, class: 'textarea-field', id: comment.id, ckeditor: { uiColor: '#ffe6bd', toolbar: 'mini', height: 100, width: 400 } %>
+            </p>
+
+            <%= form.hidden_field :author, value: current_user.username %>
+
+            <p class="form-p">
+              <%= form.submit 'Reply', class: 'comment-reply' %>
+              <a class="create-link" id="" onclick="revCollapseReplyDiv('collapse-<%= comment.id %>')" style="font-size: 12px;">Back</a>
+            </p>
+        <% end %>
+       
+      </div>
+  <% end %>
+  <% unless comment.comments.empty? %>
+    <ul class="comment-nested-list">
+      <%= render :partial => 'comments/comment', :collection => comment.comments.all %>
+    </ul>
+  <% end %>
 </li>
