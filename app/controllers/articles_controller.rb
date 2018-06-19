@@ -28,6 +28,7 @@ class ArticlesController < ApplicationController
   def show
     @page_title = "View Article | Haxxor News"
     @article = Article.find(params[:id])
+    @comment = @article.comments.new
   end
 
   def destroy

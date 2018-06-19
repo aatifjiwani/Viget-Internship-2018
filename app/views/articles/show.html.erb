@@ -1,11 +1,44 @@
 <main class="page-content">
   <div class="wrapper">
+    <%= render partial: 'shared/flash' %>
     <h1><%= @article.title %></h1>
     <%= @article.body.html_safe %>
     <% if @article.content_img.attached? %>
       <img src='<%= url_for(@article.content_img) %>' class='article-img'/>
     <% end %>
-    <div>
+    
+    <div class="form-element form-comment">
+      <% if current_user %>
+        <%= form_for @comment, url: article_comments_path(@article), html: {class: 'new-form'} do |form| %>
+          <p class="form-p">
+            <%= form.label :body, 'Enter comment:' %>
+            <%= form.cktext_area :body, class: 'textarea-field', ckeditor: { uiColor: '#ffe6bd', toolbar: 'mini', height: 100, width: 400 } %>
+            <!-- 
+    @source https://cdn.ckeditor.com/#ckeditor5
+    -->
+            <script type="text/javascript">
+              createReplyToolBar();
+            </script> 
+          </p>
+
+          <%= form.hidden_field :author, value: current_user.username %>
+
+          <p class="form-p">
+            <%= form.submit 'Reply', class: 'comment-reply' %>
+          </p>
+        <% end %>
+      <% end %>
+      <hr>
+      
+      <% unless @article.comments.count == 0 %>
+        <ul class="comment-list">
+          <%= render partial: 'comments/comment', collection: @article.comments.all %>
+        </ul>
+      <% end %>
+      
+    </div>
+    
+    <div style="margin-top: 20px;">
       <%= link_to 'Back', root_url, {class: 'link article-bubble-link'} %>
     </div>
   </div>

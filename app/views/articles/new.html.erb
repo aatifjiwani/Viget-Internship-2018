@@ -24,7 +24,7 @@
 
         <p class="form-p">
           <%= form.label :body, 'Content:' %>
-          <%= form.text_area :body, class: 'textarea-field' %>
+          <%= form.cktext_area :body, class: 'textarea-field', ckeditor: { uiColor: '#ffc4c4'} %>
           <!-- 
   @source https://cdn.ckeditor.com/#ckeditor5
   -->

@@ -1,5 +1,7 @@
 {
   "name": "Viget",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^10.0.1"
+  }
 }

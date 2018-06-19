@@ -7,6 +7,8 @@ class Article < ApplicationRecord
   
   belongs_to :user
   
+  has_many :comments, as: :commentable
+  
   def parent_is?(user)
     if user
       user.id == self.user.id

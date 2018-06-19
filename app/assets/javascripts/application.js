@@ -14,8 +14,16 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require ckeditor/init
+
 function createFormattingToolBar() {
     ClassicEditor.create( document.querySelector( '#article_body' ), {
       toolbar: [ 'heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'link', 'blockQuote' ]
+    });
+}
+
+function createReplyToolBar() {
+    ClassicEditor.create( document.querySelector( '#comment_body' ), {
+      toolbar: [ 'heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'link', 'blockQuote' ], width: 400, height: 300
     });
 }
