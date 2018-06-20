@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
   before_action :get_parent
-  
+
   def create
-    @comment = @parent.comments.new(comment_params)
+    @comment = @parent.comments.new(comment_params.merge(user: current_user))
+    
     if @comment.save
       flash[:notice] = "Comment saved."
       redirect_to article_path(@comment.parent_post)
@@ -22,11 +23,11 @@ class CommentsController < ApplicationController
   def get_parent
     @parent = Article.find(params[:article_id]) if params[:article_id]
     @parent = Comment.find(params[:comment_id]) if params[:comment_id]
-    
+
     redirect_to articles_path unless defined?(@parent)
-   end
-  
+  end
+
   def comment_params
-    params.require(:comment).permit(:author, :body)
+    params.require(:comment).permit( :body)
   end
 end

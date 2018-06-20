@@ -53,6 +53,9 @@
             
             .comment-nested-list {
                 margin-left: 10px;
+                list-style: none;
+                border-left: 1px solid var(--ink-color);
+                padding-left: 10px;
             }
             
             .form-comment {

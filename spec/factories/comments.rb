@@ -1,8 +1,7 @@
 FactoryBot.define do
-  factory :comment do
-    author "MyString"
-    body "MyText"
-    commentable_id 1
-    commentable_type "MyString"
+  factory :comment do 
+    body "testing comment"
+    association :commentable, factory: :article
+    user
   end
 end
