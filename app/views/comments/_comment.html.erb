@@ -2,12 +2,12 @@
   <p class="author"><strong><%= comment.user.username %></strong></p>
   <%= comment.body.html_safe %>
   <% if current_user %>
-    <a class="create-link" id="link-collapse-<%= comment.id %>" onclick="collapseReplyDiv('collapse-<%= comment.id %>')" style="font-size: 12px;">Reply</a>
+    <a class="create-link" href="javascript:void(0)" id="link-collapse-<%= comment.id %>" onclick="collapseReplyDiv('collapse-<%= comment.id %>')" style="font-size: 12px;">Reply</a>
       <div class="form-comment" id="form-collapse-<%= comment.id %>" style="display: none">
         <%= form_for :comment, url: comment_comments_path(comment), html: {class: 'new-form' } do |form| %>
             <p class="form-p">
               <%= form.label :body, 'Enter comment:' %>
-              <%= form.cktext_area :body, class: 'textarea-field', id: comment.id, ckeditor: { uiColor: '#ffe6bd', toolbar: 'mini', height: 100, width: 400 } %>
+              <%= form.cktext_area :body, class: 'textarea-field', id: "comment_#{comment.id}", ckeditor: { uiColor: '#ffe6bd', toolbar: 'mini', height: 100, width: 400 } %>
             </p>
 
             <p class="form-p">
