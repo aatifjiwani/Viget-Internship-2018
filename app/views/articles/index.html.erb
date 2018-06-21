@@ -38,10 +38,29 @@
           </div>
           
           <div class="article-vote">
-            <%= link_to("", nil, class: "article-vote-top") %>
-            <div class="article-vote-count">0</div>
-            <%= link_to("", nil, class: "article-vote-bottom") %>
+            <%= link_to("", article_path(article, vote: 1), method: :put, remote: true, id: "vote-button-up-#{article.id}", class: "article-vote-top") %>
+            <div id="vote-count-<%= article.id %>" class="article-vote-count"><%= article.vote  %></div>
+            <%= link_to("", article_path(article, vote: -1), method: :put, remote: true, id: "vote-button-down-#{article.id}", class: "article-vote-bottom") %>
           </div>
+          
+          <script type="text/javascript">
+            $('#vote-button-up-<%=article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
+              //console.log(data);
+              response = evt['detail'][0];
+              console.log(response);
+              //console.log(status);
+              //console.log(xhr);
+              $("#vote-count-" + response['id']).html(response['vote']);
+            });
+            
+            $('#vote-button-down-<%=article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
+              response = evt['detail'][0];
+              console.log(response);
+              //console.log(status);
+              //console.log(xhr);
+              $("#vote-count-" + response['id']).html(response['vote']);
+            });
+          </script>
           
         </div>
       <% end %>

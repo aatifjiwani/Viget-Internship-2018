@@ -10,9 +10,9 @@
     </div>
     
     <div class="article-show-vote" >
-      <%= link_to("", nil, class: "article-vote-top") %>
-      <div class="article-vote-count">0</div>
-      <%= link_to("", nil, class: "article-vote-bottom") %>
+      <%= link_to("", article_path(@article, vote: 1), method: :put, remote: true, class: "article-vote-top") %>
+      <div id="vote-count" class="article-vote-count">0</div>
+      <%= link_to("", article_path(@article, vote: -1), method: :put, remote: true, class: "article-vote-bottom") %>
     </div>
     
     <div class="form-element form-comment">

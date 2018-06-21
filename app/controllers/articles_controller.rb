@@ -30,6 +30,15 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @comment = @article.comments.new
   end
+  
+  def update
+    @article = Article.find(params[:id])
+    if params[:vote]
+      current_value = @article.vote
+      @article.update_column(:vote, (current_value + params[:vote].to_i))
+      render json: {id: @article.id, vote: @article.vote}
+    end
+  end
 
   def destroy
     @article = Article.find(params[:id])
