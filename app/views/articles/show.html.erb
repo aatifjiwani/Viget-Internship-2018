@@ -1,11 +1,19 @@
 <main class="page-content">
   <div class="wrapper">
     <%= render partial: 'shared/flash' %>
-    <h1><%= @article.title %></h1>
-    <%= @article.body.html_safe %>
-    <% if @article.content_img.attached? %>
-      <img src='<%= url_for(@article.content_img) %>' class='article-img'/>
-    <% end %>
+    <div class="article-show-content">
+      <h1><%= @article.title %></h1>
+      <%= @article.body.html_safe %>
+      <% if @article.content_img.attached? %>
+        <img src='<%= url_for(@article.content_img) %>' class='article-img'/>
+      <% end %>
+    </div>
+    
+    <div class="article-show-vote" >
+      <%= link_to("", nil, class: "article-vote-top") %>
+      <div class="article-vote-count">0</div>
+      <%= link_to("", nil, class: "article-vote-bottom") %>
+    </div>
     
     <div class="form-element form-comment">
       <% if current_user %>
@@ -41,7 +49,7 @@
       
     </div>
     
-    <div style="margin-top: 20px;">
+    <div style="margin-top: 20px; float: left;">
       <%= link_to 'Back', root_url, {class: 'link article-bubble-link'} %>
     </div>
   </div>

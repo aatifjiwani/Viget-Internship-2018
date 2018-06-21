@@ -35,7 +35,14 @@
             <p class="article-body">
               <%= preview_body(article.body) %>
             </p>
-          </div> 
+          </div>
+          
+          <div class="article-vote">
+            <%= link_to("", nil, class: "article-vote-top") %>
+            <div class="article-vote-count">0</div>
+            <%= link_to("", nil, class: "article-vote-bottom") %>
+          </div>
+          
         </div>
       <% end %>
     <% else %>

@@ -15,6 +15,7 @@
 
 @import 'home/footer';
 @import 'home/nav';
+@import 'article/index';
 
 :root {
     --ember-color: #B30115;
@@ -133,47 +134,3 @@ a, a:hover {
     border-top-right-radius: 7px;
 }
 
-.page-article {
-    background-color: rgb(246, 246, 239);
-    border-bottom: 1px solid var(--ink-color);
-    padding: 10px 0px 10px 20px;
-    height: 45px;
-    
-    .article-title {
-        width: 3%;
-        float: left;
-    }
-    
-    .article-img {
-        float: left;
-    }
-
-    .article-contain {
-        float: left;
-        padding-left: 1%;
-        
-        .article-body {
-            font-size: 12px;
-        }
-
-        .article-link {
-            font-size: 12px;
-            color: var(--ember-color);
-        }
-
-        .article-user {
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .article-link:hover {
-            color: var(--ink-color);
-        }
-
-    }
-    
-    .article-img {
-        max-height: 40px;
-        width: auto;
-    }
-}
