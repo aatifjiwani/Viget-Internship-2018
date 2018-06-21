@@ -24,10 +24,6 @@ RSpec.describe 'Posting Comments on Article', type: :feature do
       click_on 'Reply'
     end
 
-    it 'has a space for comments now' do
-      expect(page).to have_content 'Enter comment'
-    end
-
     it 'creates a comment' do
       expect(page).to have_content 'testuser'
       expect(page).to have_content 'Testing a comment'
@@ -39,12 +35,12 @@ RSpec.describe 'Posting Comments on Article', type: :feature do
       # Find out ckeditor id at runtime using its label
       locator = find('label', text: locator)[:for] if page.has_css?('label', text: locator)
       # Fill the editor content
-      page.execute_script <<-SCRIPT
-var ckeditor = CKEDITOR.instances.#{locator}
-ckeditor.setData('#{params[:with]}')
-ckeditor.focus()
-ckeditor.updateElement()
-SCRIPT
+      page.execute_script %Q!
+        var ckeditor = CKEDITOR.instances.#{locator} 
+        ckeditor.setData('#{params[:with]}')
+        ckeditor.focus()
+        ckeditor.updateElement()
+      !
     end
 
     before do

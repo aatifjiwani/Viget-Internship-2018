@@ -30,17 +30,17 @@ function createReplyToolBar() {
 
 
 function collapseReplyDiv(name) {
-    var link = "link-" + name;
+    link = "link-" + name;
     document.getElementById(link).style["display"] = "none";
     
-    var div = "form-" + name;
+    div = "form-" + name;
     document.getElementById(div).style["display"] = "block"; 
 }
 
 function revCollapseReplyDiv(name) {
-    var link = "link-" + name;
+    link = "link-" + name;
     document.getElementById(link).style["display"] = "block";
     
-    var div = "form-" + name;
+    div = "form-" + name;
     document.getElementById(div).style["display"] = "none"; 
 }

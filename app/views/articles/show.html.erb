@@ -9,7 +9,7 @@
     
     <div class="form-element form-comment">
       <% if current_user %>
-        <%= form_for @comment, url: article_comments_path(@article), html: {class: 'new-form'} do |form| %>
+        <%= form_for @comment, url: comments_path(@article), html: {class: 'new-form'} do |form| %>
           <p class="form-p">
             <%= form.label :body, 'Enter comment:' %>
             <%= form.cktext_area :body, class: 'textarea-field', ckeditor: { uiColor: '#ffe6bd', toolbar: 'mini', height: 100, width: 400 } %>
@@ -20,6 +20,11 @@
               createReplyToolBar();
             </script> 
           </p>
+      
+          <%= form.hidden_field :commentable_type, value: "Article" %>
+          <%= form.hidden_field :commentable_id, value: @article.id %>
+          <%= form.hidden_field :parent_article, value: @article.id %>
+          
 
           <p class="form-p">
             <%= form.submit 'Reply', class: 'comment-reply' %>
@@ -28,7 +33,7 @@
       <% end %>
       <hr>
       
-      <% unless @article.comments.count == 0 %>
+      <% unless @article.comments.empty? %>
         <ul class="comment-list">
           <%= render partial: 'comments/comment', collection: @article.comments.all %>
         </ul>
