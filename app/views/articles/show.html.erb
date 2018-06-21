@@ -11,7 +11,7 @@
     
     <div class="article-show-vote" >
       <%= link_to("", article_path(@article, vote: 1), method: :put, remote: true, id: "vote-button-up", class: "article-vote-top") %>
-      <div id="vote-count" class="article-vote-count"><%= @article.vote %></div>
+      <div id="vote-count" class="article-vote-count">0</div>
       <%= link_to("", article_path(@article, vote: -1), method: :put, remote: true, id: "vote-button-down", class: "article-vote-bottom") %>
     </div>
     
