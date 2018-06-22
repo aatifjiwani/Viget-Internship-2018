@@ -4,6 +4,8 @@ class Comment < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   belongs_to :commentable, polymorphic: true
   
+  has_many :votes, as: :voteable, dependent: :destroy
+  
   belongs_to :user
   
   def parent_post

@@ -11,29 +11,29 @@
     
     <div class="article-show-vote" >
       <% if current_user %>
-        <% if current_user.votes.where(article: @article).any? %>
-          <%= up_vote_links(@article.id, :put) %>
-          <div id="vote-count-<%= @article.id %>" class="article-vote-count"><%= @article.votes.sum(:value) %></div>
-          <%= down_vote_links(@article.id, :put) %>
+        <% if @article.votes.where(user: current_user).any? %>
+          <%= up_vote_links("Article", @article.id, :put) %>
+          <div id="vote-Article-count-<%= @article.id %>" class="article-vote-count"><%= @article.votes.sum(:value) %></div>
+          <%= down_vote_links("Article", @article.id, :put) %>
         <% else %>
-          <%= up_vote_links(@article.id, :post) %>
-          <div id="vote-count-<%= @article.id %>" class="article-vote-count"><%= @article.votes.sum(:value) %></div>
-          <%= down_vote_links(@article.id, :post) %>
+          <%= up_vote_links("Article", @article.id, :post) %>
+          <div id="vote-Article-count-<%= @article.id %>" class="article-vote-count"><%= @article.votes.sum(:value) %></div>
+          <%= down_vote_links("Article", @article.id, :post) %>
         <% end %>
       <% else %>
-        <%= link_to("", nil , class: "article-vote-top") %>
+        <%= link_to("", nil, id: "vote-button-up-nil", class: "article-vote-top") %>
         <div id="vote-count-<%= @article.id %>" class="article-vote-count"><%= @article.votes.sum(:value)  %></div>
-        <%= link_to("", nil , class: "article-vote-bottom") %> 
+        <%= link_to("", nil , id: "vote-button-down-nil", class: "article-vote-bottom") %> 
       <% end %>
     </div>
     
     <script type="text/javascript">
-      $('#vote-button-up-<%= @article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
-        changeVoteCount(evt, data, status, xhr);
+      $('#vote-Article-button-up-<%= @article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
+        changeVoteCount(evt, data, status,xhr, "Article");
       });
 
-      $('#vote-button-down-<%= @article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
-        changeVoteCount(evt, data, status,xhr);
+      $('#vote-Article-button-down-<%= @article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
+        changeVoteCount(evt, data, status, xhr, "Article");
       });
     </script>
     

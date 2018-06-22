@@ -9,7 +9,7 @@ class Article < ApplicationRecord
   
   has_many :comments, as: :commentable, dependent: :destroy
   
-  has_many :votes, dependent: :destroy
+  has_many :votes, as: :voteable, dependent: :destroy
   
   def parent_is?(user)
     if user
