@@ -27,41 +27,84 @@
     padding: 10px;
     margin-left: 2%;
     margin-top: 20px;
-    
+
     hr {
         border-color: var(--ink-color);
-        
+
     }
-    
+
     .comment-list {
         list-style: none;
         margin-left: 10px;
         margin-bottom: 0px;
-        
+
         li.comment {
             padding: 5px 0px 5px 0px;
             margin: 0;
             margin-top: 5px;
             
+            float: left;
+
+            .comment-vote {
+                width: 3%;
+                float: left;
+                -webkit-box-align: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                padding-right: 10px;
+
+                .comment-vote-count {
+                    font-size: 12px;
+                    padding: 3px 0 3px 0;
+                }
+
+                .comment-vote-top {
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 0 7px 7px 7px;
+                    border-color: transparent transparent var(--ember-color) transparent;
+                }
+
+                .comment-vote-bottom {
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 7px 7px 0 7px;
+                    border-color: var(--ember-color)  transparent transparent transparent;;
+                }
+            }
+            
+            .comment-content {
+                float: left;
+                width: auto;
+                margin-top: -4px;
+            }
+
             p {
                 font-size: 16px;
             }
-            
+
             .author {
                 font-size: 14px;
             }
-            
+
             .comment-nested-list {
                 margin-left: 10px;
                 list-style: none;
-                border-left: 1px solid var(--ink-color);
                 padding-left: 10px;
+                
+                li.comment {
+                    border-left: 1px solid var(--ink-color);
+                    padding-left: 20px;
+                }
             }
-            
+
             .form-comment {
                 padding: 0;
                 margin-top: 5px;
-                
+
                 .form-p {
                     padding-top: 3px;
                 }
