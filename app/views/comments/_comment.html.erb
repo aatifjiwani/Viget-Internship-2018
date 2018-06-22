@@ -1,21 +1,32 @@
 <li class="comment">
   <div class="comment-vote">
     <% if current_user %>
-      <% if 1 == 1 %>
-        <%= up_vote_links("Comment", 1, :put) %>
-        <div id="vote-Comment-count-<%= 1 %>" class="comment-vote-count"><%= 0 %></div>
-        <%= down_vote_links("Comment", 1, :put) %>
+      <% if comment.votes.where(user: current_user).any? %>
+        <%= up_vote_links("Comment", comment.id, :put) %>
+        <div id="vote-Comment-count-<%= comment.id %>" class="comment-vote-count"><%= comment.votes.sum(:value) %></div>
+        <%= down_vote_links("Comment", comment.id , :put) %>
       <% else %>
-        <%= up_vote_links("Comment", 1, :post) %>
-        <div id="vote-Comment-count-<%= 0 %>" class="comment-vote-count"><%= 0 %></div>
-        <%= down_vote_links("Comment", 1, :post) %>
+        <%= up_vote_links("Comment", comment.id , :post) %>
+        <div id="vote-Comment-count-<%= comment.id %>" class="comment-vote-count"><%= comment.votes.sum(:value) %></div>
+        <%= down_vote_links("Comment", comment.id , :post) %>
       <% end %>
     <% else %>
       <%= link_to("", nil, id: "vote-button-up-nil", class: "comment-vote-top") %>
-      <div id="vote-count-<%= 0 %>" class="comment-vote-count"><%= 0  %></div>
+      <div id="vote-count-<%= comment.id %>" class="comment-vote-count"><%= comment.votes.sum(:value)  %></div>
       <%= link_to("", nil , id: "vote-button-down-nil", class: "comment-vote-bottom") %> 
     <% end %>
+    
+    <script type="text/javascript">
+      $('#vote-Comment-button-up-<%= comment.id %>').bind('ajax:success', function(evt, data, status, xhr) {
+        changeVoteCount(evt, data, status,xhr, "Comment");
+      });
+
+      $('#vote-Comment-button-down-<%= comment.id %>').bind('ajax:success', function(evt, data, status, xhr) {
+        changeVoteCount(evt, data, status, xhr, "Comment");
+      });
+    </script>
   </div>
+  
   <div class="comment-content">
     <p class="author"><strong><%= comment.user.username %></strong></p>
     <%= comment.body.html_safe %>
