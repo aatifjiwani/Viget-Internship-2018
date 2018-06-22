@@ -11,9 +11,9 @@
         <%= down_vote_links("Comment", comment.id , :post) %>
       <% end %>
     <% else %>
-      <%= link_to("", nil, id: "vote-button-up-nil", class: "comment-vote-top") %>
+      <%= link_to("", nil, id: "vote-comment-up-nil-#{comment.id}", class: "comment-vote-top") %>
       <div id="vote-count-<%= comment.id %>" class="comment-vote-count"><%= comment.votes.sum(:value)  %></div>
-      <%= link_to("", nil , id: "vote-button-down-nil", class: "comment-vote-bottom") %> 
+      <%= link_to("", nil , id: "vote-comment-down-nil-#{comment.id}", class: "comment-vote-bottom") %> 
     <% end %>
     
     <script type="text/javascript">

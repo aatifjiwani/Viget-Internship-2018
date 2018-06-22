@@ -18,7 +18,7 @@ RSpec.describe 'Voting on an Article', type: :feature do
       
       it "let's you upvote on the article", js: true do
         visit root_path
-        page.find("#vote-button-up-#{article.id}").click
+        page.find("#vote-Article-button-up-#{article.id}").click
         within('.article-vote') do
           expect(find('.article-vote-count')).to have_content(1);
         end
@@ -26,8 +26,8 @@ RSpec.describe 'Voting on an Article', type: :feature do
       
       it "does't let you add multiple votes on the article", js: true do
         visit root_path
-        page.find("#vote-button-up-#{article.id}").click
-        page.find("#vote-button-up-#{article.id}").click
+        page.find("#vote-Article-button-up-#{article.id}").click
+        page.find("#vote-Article-button-up-#{article.id}").click
         within('.article-vote') do
           expect(find('.article-vote-count')).to have_content(1);
         end
@@ -35,11 +35,10 @@ RSpec.describe 'Voting on an Article', type: :feature do
       
       it "let's you replace downvote with upvote on the article", js: true do
         visit root_path
-        page.find("#vote-button-down-#{article.id}").click
-        page.find("#vote-button-up-#{article.id}").click
-        binding.pry
+        page.find("#vote-Article-button-up-#{article.id}").click
+        page.find("#vote-Article-button-down-#{article.id}").click
         within('.article-vote') do
-          expect(find('.article-vote-count')).to have_content(1);
+          expect(find('.article-vote-count')).to have_content(-1);
         end
       end
     end

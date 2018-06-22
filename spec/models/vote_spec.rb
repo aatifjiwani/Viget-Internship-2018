@@ -10,14 +10,31 @@ RSpec.describe Vote, type: :model do
     end
     
     it 'adds a +1 vote to article' do
-      create(:vote, article: article, user: user)
+      create(:vote, voteable: article, user: user)
       expect(article.votes.sum(:value)).to eq(1)
     end
     
     it 'does not add a duplicate vote' do 
-      create(:vote, article: article, user: user)
-      expect{create(:vote, article: article, user: user, value: -1)}.to raise_error(ActiveRecord::RecordNotUnique)
+      create(:vote, voteable: article, user: user)
+      expect{create(:vote, voteable: article, user: user, value: -1)}.to raise_error(ActiveRecord::RecordNotUnique)
       expect(article.votes.count).to eq(1)
+    end
+    
+    ###Testing votes on comments
+    let!(:comment) {create(:comment, commentable: article, user: user)}
+    it 'does not have any comment votes yet' do
+      expect(comment.votes.sum(:value)).to eq(0)
+    end
+    
+    it 'adds a -1 vote to the comment' do
+      create(:vote, voteable: comment, user: user, value: -1)
+      expect(comment.votes.sum(:value)).to eq(-1)
+    end
+    
+    it 'does not add duplicate vote to comment' do
+      create(:vote, voteable: comment, user: user)
+      expect{create(:vote, voteable: comment, user: user, value: -1)}.to raise_error(ActiveRecord::RecordNotUnique)
+      expect(comment.votes.count).to eq(1)
     end
   end
 end
