@@ -13,5 +13,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   
   has_secure_token :password_token
+  
+  has_many :votes, dependent: :destroy
 
 end

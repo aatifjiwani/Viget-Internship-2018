@@ -9,6 +9,8 @@ class Article < ApplicationRecord
   
   has_many :comments, as: :commentable, dependent: :destroy
   
+  has_many :votes, dependent: :destroy
+  
   def parent_is?(user)
     if user
       user.id == self.user.id

@@ -38,64 +38,30 @@
           </div>
           
           <div class="article-vote">
-            <% current_count = Vote.where(article_id: article.id).sum(:value) %>
             <% if current_user %>
-              <% if Vote.where(article_id: article.id, user_id: current_user.id).first %>
-                <%= link_to("", votes_path(article_id: article.id, value: 1), method: :put, remote: true, id: "vote-button-up-#{article.id}", class: "article-vote-top") %>
-                <div id="vote-count-<%= article.id %>" class="article-vote-count"><%= current_count %></div>
-                <%= link_to("", votes_path(article_id: article.id, value: -1), method: :put, remote: true, id: "vote-button-down-#{article.id}", class: "article-vote-bottom") %>
+              <% if current_user.votes.where(article: article).any? %>
+                <%= up_vote_links(article.id, :put) %>
+                <div id="vote-count-<%= article.id %>" class="article-vote-count"><%= article.votes.sum(:value) %></div>
+                <%= down_vote_links(article.id, :put) %>
               <% else %>
-                <%= link_to("", votes_path(article_id: article.id, value: 1), method: :post, remote: true, id: "vote-button-up-#{article.id}", class: "article-vote-top") %>
-                <div id="vote-count-<%= article.id %>" class="article-vote-count"><%= current_count  %></div>
-                <%= link_to("", votes_path(article_id: article.id, value: -1), method: :post, remote: true, id: "vote-button-down-#{article.id}", class: "article-vote-bottom") %>
+                <%= up_vote_links(article.id, :post) %>
+                <div id="vote-count-<%= article.id %>" class="article-vote-count"><%= article.votes.sum(:value) %></div>
+                <%= down_vote_links(article.id, :post) %>
               <% end %>
             <% else %>
               <%= link_to("", nil , class: "article-vote-top") %>
-              <div id="vote-count-<%= article.id %>" class="article-vote-count"><%= current_count  %></div>
+              <div id="vote-count-<%= article.id %>" class="article-vote-count"><%= article.votes.sum(:value)  %></div>
               <%= link_to("", nil , class: "article-vote-bottom") %> 
             <% end %>
           </div>
           
           <script type="text/javascript">
             $('#vote-button-up-<%= article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
-              //console.log(data);
-              response = evt['detail'][0];
-              console.log(response);
-              //console.log(status);
-              //console.log(xhr);
-              element = $("#vote-count-" + response['id']);
-              if (response['path_up'] && response['path_down']) {
-                $('#vote-button-up-' + response['id']).attr({
-                  'href': response['path_up'],
-                  'data-method': 'put'
-                });
-                  
-                $('#vote-button-down-' + response['id']).attr({
-                  'href': response['path_down'],
-                  'data-method': 'put'
-                });
-              }
-              element.html(response['vote']);
+              changeVoteCount(evt, data, status,xhr);
             });
             
             $('#vote-button-down-<%=article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
-              response = evt['detail'][0];
-              console.log(response);
-              //console.log(status);
-              //console.log(xhr);
-              element = $("#vote-count-" + response['id']);
-              if (response['path_up'] && response['path_down']) {
-                $('#vote-button-up-' + response['id']).attr({
-                  'href': response['path_up'],
-                  'data-method': 'put'
-                });
-                  
-                $('#vote-button-down-' + response['id']).attr({
-                  'href': response['path_down'],
-                  'data-method': 'put'
-                });
-              }
-              element.html(response['vote']);
+              changeVoteCount(evt, data, status,xhr);
             });
           </script>
           

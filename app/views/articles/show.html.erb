@@ -10,27 +10,30 @@
     </div>
     
     <div class="article-show-vote" >
-      <%= link_to("", article_path(@article, vote: 1), method: :put, remote: true, id: "vote-button-up", class: "article-vote-top") %>
-      <div id="vote-count" class="article-vote-count">0</div>
-      <%= link_to("", article_path(@article, vote: -1), method: :put, remote: true, id: "vote-button-down", class: "article-vote-bottom") %>
+      <% if current_user %>
+        <% if current_user.votes.where(article: @article).any? %>
+          <%= up_vote_links(@article.id, :put) %>
+          <div id="vote-count-<%= @article.id %>" class="article-vote-count"><%= @article.votes.sum(:value) %></div>
+          <%= down_vote_links(@article.id, :put) %>
+        <% else %>
+          <%= up_vote_links(@article.id, :post) %>
+          <div id="vote-count-<%= @article.id %>" class="article-vote-count"><%= @article.votes.sum(:value) %></div>
+          <%= down_vote_links(@article.id, :post) %>
+        <% end %>
+      <% else %>
+        <%= link_to("", nil , class: "article-vote-top") %>
+        <div id="vote-count-<%= @article.id %>" class="article-vote-count"><%= @article.votes.sum(:value)  %></div>
+        <%= link_to("", nil , class: "article-vote-bottom") %> 
+      <% end %>
     </div>
     
     <script type="text/javascript">
-      $('#vote-button-up').bind('ajax:success', function(evt, data, status, xhr) {
-        //console.log(data);
-        response = evt['detail'][0];
-        console.log(response);
-        //console.log(status);
-        //console.log(xhr);
-        $("#vote-count").html(response['vote']);
+      $('#vote-button-up-<%= @article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
+        changeVoteCount(evt, data, status, xhr);
       });
 
-      $('#vote-button-down').bind('ajax:success', function(evt, data, status, xhr) {
-        response = evt['detail'][0];
-        console.log(response);
-        //console.log(status);
-        //console.log(xhr);
-        $("#vote-count").html(response['vote']);
+      $('#vote-button-down-<%= @article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
+        changeVoteCount(evt, data, status,xhr);
       });
     </script>
     
