@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :vote do
-    article nil
-    user nil
+    article
+    user
     value 1
   end
 end
