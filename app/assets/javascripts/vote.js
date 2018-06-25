@@ -18,7 +18,8 @@ if ($comments.length) {
 
 function changeVoteCount(evt, data, status, xhr, voteable_type) {
     response = evt['detail'][0];
-    element = $(`#vote-${voteable_type}-count-${response['id']}`);
+    //Heroku does not have ES6 transpiling
+    element = $("#vote-" + voteable_type + "-count-" + response['id']);
     if (response['path_up'] && response['path_down']) {
         $('#vote-' + voteable_type + '-button-up-' + response['id']).attr({
             'href': response['path_up'],
