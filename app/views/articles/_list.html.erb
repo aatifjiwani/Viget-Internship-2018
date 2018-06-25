@@ -1,6 +1,6 @@
 <% if articles.any? %>
   <% articles.each_with_index do |article, article_num| %>
-    <div class="page-article">
+    <div class="page-article" id="article-content-<%= article_num + 1 %>">
       <p class="article-title">
         <span class="article-id"><%= article_num + 1 %>. </span>
       </p>
@@ -35,16 +35,6 @@
       <div class="article-vote">
         <%= render partial: 'shared/vote', locals: {type: "Article", voteable: article} %>
       </div>
-
-      <!--<script type="text/javascript">
-        $('#vote-Article-button-up-<%= article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
-          changeVoteCount(evt, data, status,xhr, "Article");
-        });
-
-        $('#vote-Article-button-down-<%=article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
-          changeVoteCount(evt, data, status, xhr, "Article");
-        });
-      </script> -->
 
     </div>
   <% end %>
