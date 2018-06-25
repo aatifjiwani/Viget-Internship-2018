@@ -10,21 +10,7 @@
     </div>
     
     <div class="article-show-vote" >
-      <% if current_user %>
-        <% if @article.votes.where(user: current_user).any? %>
-          <%= up_vote_links("Article", @article.id, :put) %>
-          <div id="vote-Article-count-<%= @article.id %>" class="article-vote-count"><%= @article.votes.sum(:value) %></div>
-          <%= down_vote_links("Article", @article.id, :put) %>
-        <% else %>
-          <%= up_vote_links("Article", @article.id, :post) %>
-          <div id="vote-Article-count-<%= @article.id %>" class="article-vote-count"><%= @article.votes.sum(:value) %></div>
-          <%= down_vote_links("Article", @article.id, :post) %>
-        <% end %>
-      <% else %>
-        <%= link_to("", nil, id: "vote-button-up-nil", class: "article-vote-top") %>
-        <div id="vote-count-<%= @article.id %>" class="article-vote-count"><%= @article.votes.sum(:value)  %></div>
-        <%= link_to("", nil , id: "vote-button-down-nil", class: "article-vote-bottom") %> 
-      <% end %>
+      <%= render partial: 'shared/vote', locals: {type: "Article", voteable: @article} %>
     </div>
     
     <script type="text/javascript">

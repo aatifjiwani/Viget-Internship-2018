@@ -4,8 +4,20 @@ class VotesController < ApplicationController
     if @vote.save
       @count = Vote.where(voteable_id: params[:voteable_id], voteable_type: params[:voteable_type]).sum(:value)
       
-      render json: {id: params[:voteable_id].to_i, vote: @count, path_up: votes_path(voteable_id: params[:voteable_id], voteable_type: params[:voteable_type],value: 1), 
-        path_down: votes_path(voteable_id: params[:voteable_id], voteable_type: params[:voteable_type], value: -1)}
+      render json: {
+        id: params[:voteable_id].to_i, 
+        vote: @count, 
+        path_up: votes_path(
+          voteable_id: params[:voteable_id], 
+          voteable_type: params[:voteable_type],
+          value: 1
+        ), 
+        path_down: votes_path(
+          voteable_id: params[:voteable_id], 
+          voteable_type: params[:voteable_type], 
+          value: -1
+        )
+      }
     end
     
   end
@@ -14,7 +26,10 @@ class VotesController < ApplicationController
     @vote = Vote.where(voteable_id: params[:voteable_id], voteable_type: params[:voteable_type]).first
     @vote.update_column(:value, params[:value])
     @count = Vote.where(voteable_id: params[:voteable_id], voteable_type: params[:voteable_type]).sum(:value)
-    render json: {id: params[:voteable_id].to_i, vote: @count}
+    render json: {
+      id: params[:voteable_id].to_i, 
+      vote: @count
+    }
   end
   
   private

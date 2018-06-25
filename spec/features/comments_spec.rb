@@ -16,7 +16,7 @@ RSpec.describe 'Posting Comments on Article', type: :feature do
 
   context "with a signed in user" do
     before(:each) do
-      login_user(name: 'testuser', email: 'testuser@viget.com')
+      login_user(name: 'testuser', email: 'testuser@example.com')
       create(:article)
       visit root_url
       click_on 'Show'
@@ -44,7 +44,7 @@ RSpec.describe 'Posting Comments on Article', type: :feature do
     end
 
     before do
-      login_user(name: 'testuser', email: 'testuser@viget.com')
+      login_user(name: 'testuser', email: 'testuser@example.com')
       create(:article)
       visit root_path
       click_on 'Show'

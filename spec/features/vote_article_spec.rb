@@ -7,14 +7,14 @@ RSpec.describe 'Voting on an Article', type: :feature do
     
     it 'does not let you vote without signed in user' do
       visit root_path
-      page.find('#vote-button-up-nil').click
+      page.find("#vote-article-up-nil-#{article.id}").click
       within('.article-vote') do
         expect(find('.article-vote-count')).to have_content(0);
       end
     end
     
     context 'with a signed in user' do
-      let!(:vote_user) {login_user(name: 'voteuser', email: 'voteuser@viget.com')}
+      let!(:vote_user) {login_user(name: 'voteuser', email: 'voteuser@example.com')}
       
       it "let's you upvote on the article", js: true do
         visit root_path
@@ -30,6 +30,7 @@ RSpec.describe 'Voting on an Article', type: :feature do
         page.find("#vote-Article-button-up-#{article.id}").click
         within('.article-vote') do
           expect(find('.article-vote-count')).to have_content(1);
+          expect(Vote.count).to eq(1);
         end
       end
       

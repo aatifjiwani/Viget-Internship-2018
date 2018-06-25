@@ -4,7 +4,7 @@ RSpec.describe 'User Article Interaction', type: :feature do
   describe 'Creating an article that links to your account' do
     context 'With valid credentials' do
 
-      let!(:user) { login_user(name: 'demouser', email: 'demouser@viget.com') }
+      let!(:user) { login_user(name: 'demouser', email: 'demouser@example.com') }
 
       it 'logs the user in' do
         expect(page).to have_content "Sign Out"

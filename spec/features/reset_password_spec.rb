@@ -5,7 +5,7 @@ RSpec.describe 'User Password Reset', type: :feature do
   include ActiveJob::TestHelper
   describe 'Resetting the user password' do
     context 'With existing user' do
-      let!(:user) { login_user(name: 'demouser', email: 'demouser@viget.com') }
+      let!(:user) { login_user(name: 'demouser', email: 'demouser@example.com') }
 
       before do
         clear_enqueued_jobs
@@ -13,7 +13,7 @@ RSpec.describe 'User Password Reset', type: :feature do
       end
 
       it 'cannot reset password for nonexistent user' do
-        fill_in 'Email:', with: 'nonexistentuser@viget.com'
+        fill_in 'Email:', with: 'nonexistentuser@example.com'
         click_on 'Reset Password'
         expect(page).to have_content "No account was found with the given email"
       end

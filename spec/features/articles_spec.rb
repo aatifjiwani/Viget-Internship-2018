@@ -20,7 +20,7 @@ RSpec.describe 'Articles', type: :feature do
 
   context 'with existing articles'do
     before do
-      another_user = login_user(name: 'demouser2', email: 'demouser2@gmail.com')
+      another_user = login_user(name: 'demouser2', email: 'demouser2@example.com')
       create(:article, title: 'First Article', user: another_user)
       create(:article, title: 'Second Article', user: another_user)
       visit root_url

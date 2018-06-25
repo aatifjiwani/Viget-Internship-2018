@@ -1,20 +1,6 @@
 <li class="comment">
   <div class="comment-vote">
-    <% if current_user %>
-      <% if comment.votes.where(user: current_user).any? %>
-        <%= up_vote_links("Comment", comment.id, :put) %>
-        <div id="vote-Comment-count-<%= comment.id %>" class="comment-vote-count"><%= comment.votes.sum(:value) %></div>
-        <%= down_vote_links("Comment", comment.id , :put) %>
-      <% else %>
-        <%= up_vote_links("Comment", comment.id , :post) %>
-        <div id="vote-Comment-count-<%= comment.id %>" class="comment-vote-count"><%= comment.votes.sum(:value) %></div>
-        <%= down_vote_links("Comment", comment.id , :post) %>
-      <% end %>
-    <% else %>
-      <%= link_to("", nil, id: "vote-comment-up-nil-#{comment.id}", class: "comment-vote-top") %>
-      <div id="vote-count-<%= comment.id %>" class="comment-vote-count"><%= comment.votes.sum(:value)  %></div>
-      <%= link_to("", nil , id: "vote-comment-down-nil-#{comment.id}", class: "comment-vote-bottom") %> 
-    <% end %>
+    <%= render partial: 'shared/vote', locals: {type: "Comment", voteable: comment} %>
     
     <script type="text/javascript">
       $('#vote-Comment-button-up-<%= comment.id %>').bind('ajax:success', function(evt, data, status, xhr) {
@@ -28,7 +14,7 @@
   </div>
   
   <div class="comment-content">
-    <p class="author"><strong><%= comment.user.username %></strong></p>
+    <p class="author"><%= comment.user.username %></p>
     <%= comment.body.html_safe %>
     <% if current_user %>
       <a class="create-link" href="javascript:void(0)" id="link-collapse-<%= comment.id %>" onclick="collapseReplyDiv('collapse-<%= comment.id %>')" style="font-size: 12px;">Reply</a>

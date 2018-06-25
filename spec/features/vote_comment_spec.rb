@@ -18,7 +18,7 @@ RSpec.describe 'Voting on a Comment', type: :feature do
     end
 
     context 'with a signed in user' do
-      let!(:vote_user) {login_user(name: 'voteuser', email: 'voteuser@viget.com')}
+      let!(:vote_user) {login_user(name: 'voteuser', email: 'voteuser@example.com')}
 
       before do
         visit article_path(article)
@@ -27,7 +27,8 @@ RSpec.describe 'Voting on a Comment', type: :feature do
       it "let's you upvote on the comment", js: true do
         page.find("#vote-Comment-button-up-#{comment.id}").click
         within('.comment-vote') do
-          expect(find('.comment-vote-count')).to have_content(1);
+          element = find('.comment-vote-count')
+          expect(element).to have_content(1);
         end
       end
 

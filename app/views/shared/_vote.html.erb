@@ -1,0 +1,15 @@
+<% if current_user %>
+  <% if voteable_has_user_vote?(voteable) %>
+    <%= up_vote_links(type, voteable.id, :put) %>
+    <div id="vote-<%= type %>-count-<%= voteable.id %>" class="<%= type.downcase %>-vote-count"><%= total_votes(voteable) %></div>
+    <%= down_vote_links(type, voteable.id , :put) %>
+  <% else %>
+    <%= up_vote_links(type, voteable.id , :post) %>
+    <div id="vote-<%= type %>-count-<%= voteable.id %>" class="<%= type.downcase %>-vote-count"><%= total_votes(voteable) %></div>
+    <%= down_vote_links(type, voteable.id , :post) %>
+  <% end %>
+<% else %>
+  <%= link_to("", nil, id: "vote-#{type.downcase}-up-nil-#{voteable.id}", class: "#{type.downcase}-vote-top") %>
+  <div id="vote-count-<%= voteable.id %>" class="<%= type.downcase %>-vote-count"><%= total_votes(voteable)  %></div>
+  <%= link_to("", nil , id: "vote-#{type.downcase}-down-nil-#{voteable.id}", class: "#{type.downcase}-vote-bottom") %> 
+<% end %>

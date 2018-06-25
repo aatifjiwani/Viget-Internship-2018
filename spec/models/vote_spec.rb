@@ -26,11 +26,6 @@ RSpec.describe Vote, type: :model do
       expect(comment.votes.sum(:value)).to eq(0)
     end
     
-    it 'adds a -1 vote to the comment' do
-      create(:vote, voteable: comment, user: user, value: -1)
-      expect(comment.votes.sum(:value)).to eq(-1)
-    end
-    
     it 'does not add duplicate vote to comment' do
       create(:vote, voteable: comment, user: user)
       expect{create(:vote, voteable: comment, user: user, value: -1)}.to raise_error(ActiveRecord::RecordNotUnique)
