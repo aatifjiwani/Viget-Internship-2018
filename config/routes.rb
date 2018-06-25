@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resource :votes, only: [:create, :update]
+  resource :upvotes, only: [:create, :update]
+  resource :downvotes, only: [:create, :update]
   
   resources :articles, except: [:edit, :update]
 
