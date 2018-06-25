@@ -1,0 +1,55 @@
+<% if articles.any? %>
+  <% articles.each_with_index do |article, article_num| %>
+    <div class="page-article">
+      <p class="article-title">
+        <span class="article-id"><%= article_num + 1 %>. </span>
+      </p>
+
+
+      <% if article.user.profile_img.attached? %>
+        <img src='<%= url_for(article.user.profile_img) %>' class='article-img'/>
+      <% else %>
+        <img src="/assets/no-profile-img.jpg" class='article-img'/>
+      <% end %>
+
+      <div class="article-contain">
+        <p>
+          <%= article.title %>
+
+          <% if article.user %>
+            <span class="article-user">by <%= article.user.username %></span>
+          <% end %>
+
+          <%= link_to 'Show', article_path(article), {class: 'article-link'} %> 
+
+          <% if article.parent_is?(current_user) %>
+            / <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?'}, class: "article-link" %>
+          <% end %>
+        </p>
+
+        <p class="article-body">
+          <%= preview_body(article.body) %>
+        </p>
+      </div>
+
+      <div class="article-vote">
+        <%= render partial: 'shared/vote', locals: {type: "Article", voteable: article} %>
+      </div>
+
+      <!--<script type="text/javascript">
+        $('#vote-Article-button-up-<%= article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
+          changeVoteCount(evt, data, status,xhr, "Article");
+        });
+
+        $('#vote-Article-button-down-<%=article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
+          changeVoteCount(evt, data, status, xhr, "Article");
+        });
+      </script> -->
+
+    </div>
+  <% end %>
+<% else %>
+  <div class="page-article">
+    <p class="article-title" style="width: 100%">Nothing found...</p>
+  </div>
+<% end %>

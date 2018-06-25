@@ -1,62 +1,13 @@
 <main class="page-content">
   <div class="wrapper">
     <div class="page-headline">
-      <p id="home-headline">View most recent posts:</p>
-    </div>
-    <% if @articles.any? %>
-      <% @articles.each_with_index do |article, article_num| %>
-        <div class="page-article">
-          <p class="article-title">
-            <span class="article-id"><%= article_num + 1 %>. </span>
-          </p>
-          
-          
-          <% if article.user.profile_img.attached? %>
-            <img src='<%= url_for(article.user.profile_img) %>' class='article-img'/>
-          <% else %>
-            <img src="/assets/no-profile-img.jpg" class='article-img'/>
-          <% end %>
-
-          <div class="article-contain">
-            <p>
-              <%= article.title %>
-
-              <% if article.user %>
-                <span class="article-user">by <%= article.user.username %></span>
-              <% end %>
-
-              <%= link_to 'Show', article_path(article), {class: 'article-link'} %> 
-
-              <% if article.parent_is?(current_user) %>
-                / <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?'}, class: "article-link" %>
-              <% end %>
-            </p>
-
-            <p class="article-body">
-              <%= preview_body(article.body) %>
-            </p>
-          </div>
-          
-          <div class="article-vote">
-            <%= render partial: 'shared/vote', locals: {type: "Article", voteable: article} %>
-          </div>
-          
-          <!--<script type="text/javascript">
-            $('#vote-Article-button-up-<%= article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
-              changeVoteCount(evt, data, status,xhr, "Article");
-            });
-            
-            $('#vote-Article-button-down-<%=article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
-              changeVoteCount(evt, data, status, xhr, "Article");
-            });
-          </script> -->
-          
-        </div>
+      <p class="headline-text">View most recent posts:</p>
+      <%= form_tag password_reset_path, class: 'headline-options styled-select colored rounded' do %>
+        <%= select_tag "article_options", options_for_select([ "Most Recent", "All-Time Top Rated", "Yearly Top Rated", "Monthly Top Rated", "Daily Top Rated" ], "Most Recent") %>
       <% end %>
-    <% else %>
-      <div class="page-article">
-        <p class="article-title" style="width: 100%">Nothing found...</p>
-      </div>
-    <% end %>
+    </div>
+    <div id="article-list">
+      <%= render partial: 'articles/list', locals: {articles: @articles}%>
+    </div>
   </div>
 </main>
