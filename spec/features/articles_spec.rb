@@ -34,7 +34,7 @@ RSpec.describe 'Articles', type: :feature do
     end
 
     it "Lets you delete an article on the index page" do
-      
+      binding.pry
       first(:link, 'Delete').click
 
       expect(page).to_not have_content 'Second Article'

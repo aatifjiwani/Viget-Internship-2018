@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   
   #Password Reset
   resource :password_reset, except: [:index, :show, :destroy]
-  
     
   root 'articles#index'    
 end

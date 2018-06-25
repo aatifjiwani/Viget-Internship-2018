@@ -11,7 +11,24 @@ class ArticlesController < ApplicationController
 
   def index
     @page_title = "Home | Haxxor News"
-    @articles = Article.order(id: :desc)
+    if params[:article_options]
+      case params[:article_options]
+        when "Most Recent"
+        @articles = Article.order(id: :desc)
+        when "All-Time Top Rated"
+        @articles = article_records(Vote.article_top_10)
+        when "Yearly Top Rated"
+        @articles = article_records(Vote.article_top_10_year)
+        when "Monthly Top Rated"
+        @articles = article_records(Vote.article_top_10_month)
+        when "Daily Top Rated"
+        @articles = article_records(Vote.article_top_10_day)
+      end
+    else
+      @articles = Article.order(id: :desc)
+    end
+    
+    @current_selection = params[:article_options] || "Most Recent"
   end
 
   def create
@@ -33,6 +50,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
+    @article.votes.destroy
     @article.destroy
     redirect_to root_url
   end
@@ -46,5 +64,14 @@ class ArticlesController < ApplicationController
   private
   def article_params
     params.require(:article).permit(:title, :body, :content_img)
+  end
+  
+  def array_of_ids(hash)
+    hash.sort_by {|k,v| -v}.to_h.keys
+  end
+  
+  def article_records(hash)
+    arr = array_of_ids(hash)
+    arr.map! {|x| Article.find(x)}
   end
 end

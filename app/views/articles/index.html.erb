@@ -2,8 +2,8 @@
   <div class="wrapper">
     <div class="page-headline">
       <p class="headline-text">View most recent posts:</p>
-      <%= form_tag password_reset_path, class: 'headline-options styled-select colored rounded' do %>
-        <%= select_tag "article_options", options_for_select([ "Most Recent", "All-Time Top Rated", "Yearly Top Rated", "Monthly Top Rated", "Daily Top Rated" ], "Most Recent") %>
+      <%= form_tag articles_path, method: :get, id: "article_filter", class: 'headline-options styled-select colored rounded' do %>
+        <%= select_tag "article_options", options_for_select([ "Most Recent", "All-Time Top Rated", "Yearly Top Rated", "Monthly Top Rated", "Daily Top Rated" ], @current_selection), id: "article_select"%>
       <% end %>
     </div>
     <div id="article-list">
