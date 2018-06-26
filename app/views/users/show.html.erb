@@ -1,0 +1,36 @@
+<main class="page-content">
+  <div class="wrapper">
+    <div class="user-header">
+      <%= render partial: 'shared/profileimg', locals: {user: @user, class_name: "user-img"} %>
+      <div class="user-info">
+        <h2 class="username"><%= @user.username %></h2>
+        <p class="joined">Joined: <strong><%= @user.created_at.strftime("%B %d, %Y") %></strong>
+        </p>
+      </div>
+
+      <div class="user-karma">
+        <h2 class="karma-title">Haxxor Karma</h2>
+        <p class="karma"><%= @user.user_karma %></p>
+        <p>Haxxor Karma is calculated based on total article votes and votes you've made.</p>
+      </div>
+    </div>
+
+    <div class="user-content">
+      <div class="sidebar">
+        <button class="bar-item tab current" onClick="appearLeft(event, 'Articles')">Your Articles</button>
+        <button class="bar-item tab" onClick="appearLeft(event, 'Votes')">Your Votes</button>
+      </div>
+      
+      <div id="Articles" class="container animate-left" style="">
+        <h2>Articles</h2>
+        <p>Articles</p> 
+      </div>
+      
+      <div id="Votes" class="container animate-left" style="display: none">
+        <h2>Votes</h2>
+        <p>Votes</p>
+      </div>
+
+    </div>
+  </div>
+</main>
