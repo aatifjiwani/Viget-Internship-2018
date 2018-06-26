@@ -13,16 +13,6 @@
       <%= render partial: 'shared/vote', locals: {type: "Article", voteable: @article} %>
     </div>
     
-    <script type="text/javascript">
-      $('#vote-Article-button-up-<%= @article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
-        changeVoteCount(evt, data, status,xhr, "Article");
-      });
-
-      $('#vote-Article-button-down-<%= @article.id %>').bind('ajax:success', function(evt, data, status, xhr) {
-        changeVoteCount(evt, data, status, xhr, "Article");
-      });
-    </script>
-    
     <div class="form-element form-comment">
       <% if current_user %>
         <%= form_for @comment, url: comments_path(@article), html: {class: 'new-form'} do |form| %>

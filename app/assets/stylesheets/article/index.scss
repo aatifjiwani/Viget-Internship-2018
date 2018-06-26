@@ -29,6 +29,16 @@
         .article-user {
             font-weight: bold;
             font-size: 14px;
+            
+            a {
+                color: var(--ink-color);
+                text-decoration: none;
+            }
+            
+            a:hover {
+                color: var(--ember-color);
+                text-decoration: none;
+            }
         }
 
         .article-link:hover {

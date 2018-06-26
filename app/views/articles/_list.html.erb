@@ -6,18 +6,14 @@
       </p>
 
 
-      <% if article.user.profile_img.attached? %>
-        <img src='<%= url_for(article.user.profile_img) %>' class='article-img'/>
-      <% else %>
-        <img src="/assets/no-profile-img.jpg" class='article-img'/>
-      <% end %>
+      <%= render partial: 'shared/profileimg', locals: {user: article.user, class_name: "article-img"} %>
 
       <div class="article-contain">
         <p>
           <%= article.title %>
 
           <% if article.user %>
-            <span class="article-user">by <%= article.user.username %></span>
+            <span class="article-user">by <%= link_to article.user.username, user_path(article.user) %></span>
           <% end %>
 
           <%= link_to 'Show', article_path(article), {class: 'article-link'} %> 

@@ -1,20 +1,10 @@
 <li class="comment">
   <div class="comment-vote">
     <%= render partial: 'shared/vote', locals: {type: "Comment", voteable: comment} %>
-    
-    <script type="text/javascript">
-      $('#vote-Comment-button-up-<%= comment.id %>').bind('ajax:success', function(evt, data, status, xhr) {
-        changeVoteCount(evt, data, status,xhr, "Comment");
-      });
-
-      $('#vote-Comment-button-down-<%= comment.id %>').bind('ajax:success', function(evt, data, status, xhr) {
-        changeVoteCount(evt, data, status, xhr, "Comment");
-      });
-    </script>
   </div>
   
   <div class="comment-content">
-    <p class="author"><%= comment.user.username %></p>
+    <p class="author"><%= link_to comment.user.username, user_path(comment.user) %></p>
     <%= comment.body.html_safe %>
     <% if current_user %>
       <a class="create-link" href="javascript:void(0)" id="link-collapse-<%= comment.id %>" onclick="collapseReplyDiv('collapse-<%= comment.id %>')" style="font-size: 12px;">Reply</a>
