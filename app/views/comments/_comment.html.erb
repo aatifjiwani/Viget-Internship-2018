@@ -39,7 +39,7 @@
   </div>
   <% unless comment.comments.empty? %>
     <ul class="comment-nested-list">
-      <%= render :partial => 'comments/comment', :collection => comment.comments.all %>
+      <%= render partial: 'comments/comment', collection: comment.comments.all %>
     </ul>
   <% end %>
 </li>

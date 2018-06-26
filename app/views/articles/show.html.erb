@@ -10,7 +10,7 @@
     </div>
     
     <div class="article-show-vote" >
-      <%= render partial: 'shared/vote', locals: {type: "Article", voteable: @article} %>
+      <%= render 'shared/vote', type: "Article", voteable: @article %>
     </div>
     
     <script type="text/javascript">
