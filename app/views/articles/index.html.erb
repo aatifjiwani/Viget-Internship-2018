@@ -7,7 +7,7 @@
       <% end %>
     </div>
     <div id="article-list">
-      <%= render partial: 'articles/list', locals: {articles: @articles}%>
+      <%= render 'articles/list', articles: @articles %>
     </div>
   </div>
 </main>

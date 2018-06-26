@@ -6,7 +6,7 @@
       </p>
 
 
-      <%= render partial: 'shared/profileimg', locals: {user: article.user, class_name: "article-img"} %>
+      <%= render 'shared/profileimg', user: article.user, class_name: "article-img" %>
 
       <div class="article-contain">
         <p>
@@ -29,7 +29,7 @@
       </div>
 
       <div class="article-vote">
-        <%= render partial: 'shared/vote', locals: {type: "Article", voteable: article} %>
+        <%= render 'shared/vote', type: "Article", voteable: article %>
       </div>
 
     </div>
