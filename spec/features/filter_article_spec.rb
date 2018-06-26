@@ -14,15 +14,32 @@ RSpec.describe 'Filtering for an article', type: :feature do
           create(:vote, voteable: article, user: user)
         end
       end
+      
+      visit root_path
+    end
+    
+    it 'orders by most recent by default' do
+      expect(find("#article-content-1")).to have_content "Demo Article 10"
+      expect(find("#article-content-10")).to have_content "Demo Article 1"
     end
     
     it 'orders based on popularity', js: true do
-      visit root_path
       #page.select "All-Time Top Rated", from: "#article_select"
       within "#article_select" do
         find("option[value='All-Time Top Rated']").click
       end
-      binding.pry
+      
+      expect(find("#article-content-1")).to have_content "Demo Article 1"
+      expect(find("#article-content-10")).to have_content "Demo Article 10"
+    end
+    
+    it 'orders based on time again', js: true do
+      within "#article_select" do
+        find("option[value='Most Recent']").click
+      end
+      
+      expect(find("#article-content-1")).to have_content "Demo Article 10"
+      expect(find("#article-content-10")).to have_content "Demo Article 1"
     end
   end
 end

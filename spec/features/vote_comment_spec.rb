@@ -23,13 +23,11 @@ RSpec.describe 'Voting on a Comment', type: :feature do
       before do
         visit article_path(article)
       end
-      
+
       it "let's you upvote on the comment", js: true do
         page.find("#vote-Comment-button-up-#{comment.id}").click
-        within('.comment-vote') do
-          element = find('.comment-vote-count')
-          expect(element).to have_content(1);
-        end
+        visit article_path(article)
+        expect(find('.comment-vote')).to have_content(1);
       end
 
       it "does't let you add multiple votes on the comment", js: true do
