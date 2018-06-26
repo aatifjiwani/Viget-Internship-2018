@@ -54,8 +54,9 @@
         float: left;
         background-color: var(--ember-color);
         z-index: 100;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
+        box-shadow: 2px 0px 5px 0 rgba(0,0,0,0.16);
+        border-bottom-left-radius: 3px;
+        border-top-left-radius: 3px;
 
         .bar-item {
             background-color: var(--ember-color);
@@ -81,12 +82,101 @@
 
     .container {
         float: left;
-        width: calc(80% - 20px);
-        padding-left: 20px;
+        width: 80%;
+        height: 300px;
+        overflow-y: scroll;
+        border-top: 1px solid var(--ink-color);
+
+        
+        .page-article {
+            background-color: rgb(246, 246, 239);
+            border-bottom: 1px solid var(--ink-color);
+            padding: 10px 0px 10px 20px;
+            height: 50px;
+
+            .article-title {
+                width: 3%;
+                float: left;
+            }
+
+            .article-img {
+                float: left;
+            }
+
+            .article-contain {
+                float: left;
+                padding-left: 1%;
+
+                .article-body {
+                    font-size: 12px;
+                }
+
+                .article-link {
+                    font-size: 12px;
+                    color: var(--ember-color);
+                }
+
+                .article-user {
+                    font-weight: bold;
+                    font-size: 14px;
+
+                    a {
+                        color: var(--ink-color);
+                        text-decoration: none;
+                    }
+
+                    a:hover {
+                        color: var(--ember-color);
+                        text-decoration: none;
+                    }
+                }
+
+                .article-link:hover {
+                    color: var(--ink-color);
+                }
+
+            }
+
+            .article-img {
+                max-height: 40px;
+                width: auto;
+            }
+
+            .article-vote {
+                width: 3%;
+                float: right;
+                -webkit-box-align: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                padding-right: 10px;
+
+                .article-vote-count {
+                    font-size: 14px;
+                    padding: 8px 0 8px 0;
+                }
+
+                .article-vote-top {
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 0 7px 7px 7px;
+                    border-color: transparent transparent var(--ember-color) transparent;
+                }
+
+                .article-vote-bottom {
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 7px 7px 0 7px;
+                    border-color: var(--ember-color)  transparent transparent transparent;;
+                }
+            }
+        }
     }
 
     .animate-left {
-        animation: animateleft 0.4s;
+        animation: animateleft 0.5s;
         position: relative;
     }
 
