@@ -14,8 +14,20 @@ class SessionsController < ApplicationController
     end
   end
 
+  def redirect
+    @auth_hash = auth_hash_test
+    binding.pry
+    @auth_hash = @auth_hash.inspect
+  end
+
+
   def destroy
     reset_session
     redirect_to articles_path
+  end
+  
+  private
+  def auth_hash_test
+    request.env['omniauth.auth']
   end
 end

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   
   #Password Reset
   resource :password_reset, except: [:index, :show, :destroy]
-    
+  
+  get '/auth/:provider/callback', to: 'sessions#redirect'    
   root 'articles#index'    
 end
