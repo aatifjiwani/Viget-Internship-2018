@@ -7,11 +7,11 @@ module VotesHelper
     voteable.votes.sum(:value)
   end
 
-  def user_vote_articles(arr)
-    arr.map! {|x| Article.find(x)}
+  def user_vote_articles(array_of_ids)
+    array_of_ids.map! {|x| Article.find(x)}
   end
   
   def user_votes(user)
-    user_vote_articles(Vote.user_articles_voted(user))
+    user_vote_articles(Vote.user_articles_voted(user).pluck(:voteable_id))
   end
 end

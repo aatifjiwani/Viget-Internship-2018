@@ -1,10 +1,10 @@
 class User < ApplicationRecord
   include VotesHelper
-  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  #EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :username, presence: true, uniqueness: {case_sensitive: false}, length: {minimum: 6}
 
-  validates :email, presence: true, uniqueness: {case_sensitive: false}, format: EMAIL_REGEX
+  validates :email, presence: true, uniqueness: {case_sensitive: false}, format: URI::MailTo::EMAIL_REGEXP
 
   has_one_attached :profile_img
 
