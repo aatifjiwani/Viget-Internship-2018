@@ -29,6 +29,8 @@ gem 'jquery-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'http', '~> 3.3'
+
 # Google Cloud Storage
 gem "google-cloud-storage", "~> 1.8", require: false
 

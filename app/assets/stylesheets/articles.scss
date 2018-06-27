@@ -71,6 +71,11 @@
     color: #fff;
 }
 
+.form-element input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+}
+
 .form-element .form-error h4 {
     color: var(--ember-color);
 }

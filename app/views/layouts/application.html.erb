@@ -6,21 +6,24 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    
-    
+
+
     <%= javascript_include_tag Ckeditor.cdn_url %>
 
     <link href="https://fonts.googleapis.com/css?family=Arvo:400,700" rel="stylesheet"> 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+
     <!-- 
 @source https://cdn.ckeditor.com/#ckeditor5
 
 <script src="https://cdn.ckeditor.com/ckeditor5/10.0.1/classic/ckeditor.js">
-    </script>
+</script>
 -->
 
-    
+
   </head>
 
   <body>
@@ -47,7 +50,7 @@
       </div>
     </header>
 
-    <%= yield %>
+      <%= yield %>
 
     <footer class="site-footer">
       <div class="wrapper">
@@ -73,6 +76,6 @@
     </footer>
 
   </body>
-  
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </html>

@@ -38,10 +38,14 @@
     .li-submit {
         width: 100%;
     }
+    
+    .li-upload {
+        width: 40%;
+    }
 }
 
 .user-form{
-    li:nth-child(3), li:nth-child(4), li:nth-child(5) {
+    li:nth-child(3), li:nth-child(4), li:nth-child(5), li:nth-child(6) {
         label {
             margin-top: 20px;
         }
