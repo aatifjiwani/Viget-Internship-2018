@@ -1,5 +1,5 @@
 <% if user.profile_img.attached? %>
-    <img src='<%= url_for(user.profile_img) %>' class='<%= class_name %>' />
+  <%= image_tag(url_for(user.profile_img), class: class_name) %>
 <% else %>
-    <img src="/assets/no-profile-img.jpg" class='<%= class_name %>'/>
+  <%= image_tag("/assets/no-profile-img.jpg", class: class_name) %>
 <% end %>

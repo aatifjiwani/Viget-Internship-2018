@@ -16,4 +16,9 @@ class Article < ApplicationRecord
       user.id == self.user.id
     end
   end
+  
+    
+  def preview_body
+    ActionView::Base.full_sanitizer.sanitize(self.body)[0..155].gsub(/\s\w+\s*$/,'...')
+  end
 end
