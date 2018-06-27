@@ -14,15 +14,15 @@ class ArticlesController < ApplicationController
     if params[:article_options]
       case params[:article_options]
         when "Most Recent"
-        @articles = Article.order(id: :desc)
+          @articles = Article.order(id: :desc)
         when "All-Time Top Rated"
-        @articles = article_records(Article.article_top_10)
+          @articles = article_records(Article.article_top_10)
         when "Yearly Top Rated"
-        @articles = article_records(Article.article_top_10_year)
+          @articles = article_records(Article.article_top_10_year)
         when "Monthly Top Rated"
-        @articles = article_records(Article.article_top_10_month)
+          @articles = article_records(Article.article_top_10_month)
         when "Daily Top Rated"
-        @articles = article_records(Article.article_top_10_day)
+          @articles = article_records(Article.article_top_10_day)
       else
         @articles = Article.order(id: :desc)
         @current_selection = "Most Recent"
