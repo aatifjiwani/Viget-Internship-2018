@@ -25,6 +25,6 @@ class Article < ApplicationRecord
   
     
   def preview_body
-    ActionView::Base.full_sanitizer.sanitize(self.body)[0..155].gsub(/\s\w+\s*$/,'...')
+    "#{ActionView::Base.full_sanitizer.sanitize(self.body.strip)[0..155]}..."
   end
 end

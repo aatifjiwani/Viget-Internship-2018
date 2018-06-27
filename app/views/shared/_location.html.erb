@@ -1,0 +1,6 @@
+<% if object.location %>
+  <p class="location">
+    <i class="fas fa-map-marker-alt"></i> 
+    <%= object.location["city"] %>, <%= object.location["country_name"] %>
+  </p>
+<% end %>

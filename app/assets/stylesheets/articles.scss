@@ -107,6 +107,18 @@ span.required {
     width: 90%;
     float: left;
     height: auto;
+    
+    h1 {
+        margin-bottom: 0;
+    }
+    
+    .location {
+        color: #808080;
+    }
+    
+    .article-heading {
+        padding-bottom: 30px;
+    }
 }
 
 .article-show-vote {

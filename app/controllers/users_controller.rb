@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
+  include LocationHelper
+  
   def new 
     @page_title = "Create Account | Haxxor News"
     @user = User.new
   end
 
   def create
-    #binding.pry
     @user = User.new(user_params)
     if params[:user][:location]
       api_request = HTTP.get(location_api_url).as_json
@@ -28,21 +29,5 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation, :profile_img)
-  end
-    
-  def remote_ip
-    if request.remote_ip == '127.0.0.1'
-      '134.201.250.155'
-    else
-      request.remote_ip
-    end
-  end
-  
-  def get_only_location(json_object)
-    json_object.slice("country_name", "city", "latitude", "longitude")
-  end
-  
-  def location_api_url
-    "http://api.ipstack.com/#{remote_ip}?access_key=#{Rails.application.credentials.dig(:geolocation_api_key)}"
   end
 end

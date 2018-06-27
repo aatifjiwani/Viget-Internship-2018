@@ -6,6 +6,7 @@
         <h2 class="username"><%= @user.username %></h2>
         <p class="joined">Joined: <strong><%= @user.created_at.strftime("%B %d, %Y") %></strong>
         </p>
+        <%= render 'shared/location', object: @user %>
       </div>
 
       <div class="user-karma">

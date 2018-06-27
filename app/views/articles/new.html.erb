@@ -33,7 +33,11 @@
           </script> 
         </p>
       
-        
+        <p class="form-p">
+          <%= form.check_box :location, {}, 1, nil %>
+          <%= form.label :location, 'Add Current Location to Article', class: "checkbox", style: "display: inline;" %>
+          
+        </p>
 
         <p class="form-p">
           <%= form.label 'Upload picture:' %>

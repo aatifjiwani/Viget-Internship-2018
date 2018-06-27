@@ -1,6 +1,7 @@
 require 'action_view'
 class ArticlesController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
+  include LocationHelper
   
   before_action :require_logged_in, only: [:create, :destroy, :new]
   
@@ -37,7 +38,12 @@ class ArticlesController < ApplicationController
   def create
     @current_user = current_user
     @article = @current_user.articles.new(article_params)
-
+    
+    if params[:article][:location]
+      api_request = HTTP.get(location_api_url).as_json
+      @article.location = get_only_location(JSON.parse(api_request["body"][0]))
+    end
+      
     if @article.save
       redirect_to root_url
     else

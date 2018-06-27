@@ -2,7 +2,12 @@
   <div class="wrapper">
     <%= render partial: 'shared/flash' %>
     <div class="article-show-content">
-      <h1><%= @article.title %></h1>
+      <div class="article-heading">
+        <h1><%= @article.title %></h1>
+        <p>posted by <span class="article-user"><%= link_to @article.user.username, user_path(@article.user) %></span></p>
+        <%= render 'shared/location', object: @article %>
+      </div>
+      
       <%= @article.body.html_safe %>
       <% if @article.content_img.attached? %>
         <img src='<%= url_for(@article.content_img) %>' class='article-img'/>
