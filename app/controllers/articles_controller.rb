@@ -1,4 +1,5 @@
 require 'action_view'
+
 class ArticlesController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
   include LocationHelper
