@@ -9,9 +9,11 @@
         <%= render 'shared/location', object: @user %>
       </div>
       
-      <div class="user-map">
-        <%= image_tag(@image, class: "map-img") %>
-      </div>
+      <% if @image %>
+        <div class="user-map">
+          <%= image_tag(@image, class: "map-img") %>
+        </div>
+      <% end %>
 
       <div class="user-karma">
         <h2 class="karma-title">Haxxor Karma</h2>

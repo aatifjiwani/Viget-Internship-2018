@@ -23,10 +23,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    latitude = @user.location["latitude"]
-    longitude = @user.location["longitude"]
-    city = @user.location["city"]
-    @image = MapImage.new(latitude, longitude, city).image
+    if @user.location
+      latitude = @user.location["latitude"]
+      longitude = @user.location["longitude"]
+      city = @user.location["city"]
+      @image = MapImage.new(latitude, longitude, city).image
+    end
   end
 
   private
