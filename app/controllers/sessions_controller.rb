@@ -5,44 +5,53 @@ class SessionsController < ApplicationController
   end
 
   def create
-    unless params[:password].strip.empty? 
+    @oauth = OAuthUser.where(username: params[:username]).first 
+    unless @oauth
       user = User.find_by(username: params[:username])
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
         redirect_to articles_path
+      else
+        flash[:alert] = "Invalid username or password."
+        redirect_to new_sessions_path
       end
+    else
+      flash[:alert] = "#{@oauth.username}, please sign in using #{@oauth.provider.capitalize}"
+      redirect_to new_sessions_path
     end
-    
-    flash[:alert] = "Invalid username or password."
-    render 'new'
   end
 
   def redirect
     @response = auth_hash
+    info = @response["info"]
+    @oauth = OAuthUser.where(email: info["email"]).first
     
-    if @response["provider"] == "facebook"
-      info = @response["info"]
-      user_params = {
-        username: create_username(info["name"]),
-        email: info["email"]
-        }
-      @profile_img = grab_image(info["image"])
-    end
-    
-    binding.pry
-    
-    
-    @user = User.new(user_params)
-    @user.oauth_creation = true
-    @user.bypass_creation = true
-    if @profile_img
-      @user.profile_img.attach(io: @profile_img, filename: "#{user_params[:username]}profileimg.jpeg")
-    end
-    
-    if @user.save
-      session[:user_id] = @user.id
-      @user.oauth_creation = false
-      @user.bypass_creation = false
+    unless @oauth
+      if @response["provider"] == "facebook"
+        user_params = {
+          username: create_username(info["name"]),
+          email: info["email"]
+          }
+        @profile_img = grab_image(info["image"])
+      end
+
+      @user = User.new(user_params)
+      @user.oauth_creation = true
+      if @profile_img
+        @user.profile_img.attach(io: @profile_img, filename: "#{user_params[:username]}profileimg.jpeg")
+      end
+
+      binding.pry
+
+      if @user.save
+        OAuthUser.create(username: @user.username, email: @user.email, provider: @response["provider"])
+        session[:user_id] = @user.id
+        @user.oauth_creation = false
+        redirect_to articles_path
+      end
+    else
+      session[:user_id] = User.where(email: @oauth.email).first.id
+      flash[:notice] = "Signed in!"
       redirect_to articles_path
     end
   end

@@ -1,5 +1,6 @@
 <main class="page-content">
   <div class="wrapper">
+    <%= render partial: 'shared/flash' %>
     <div class="page-headline">
       <p class="headline-text">View most recent posts:</p>
       <%= form_tag articles_path, method: :get, id: "article_filter", class: 'headline-options styled-select colored rounded' do %>
