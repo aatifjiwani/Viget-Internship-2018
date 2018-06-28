@@ -8,9 +8,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if params[:user][:location]
-      api_request = HTTP.get(location_api_url).as_json
-      @user.location = get_only_location(JSON.parse(api_request["body"][0]))
+    if params[:user][:should_locate]
+      @user.location = Geolocater.new(request.remote_ip).location
     end
     
     if @user.save
@@ -24,6 +23,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    latitude = @user.location["latitude"]
+    longitude = @user.location["longitude"]
+    city = @user.location["city"]
+    @image = MapImage.new(latitude, longitude, city).image
   end
 
   private

@@ -17,6 +17,15 @@
             margin: 0;
         }
     }
+    
+    .user-map {
+        float: left;
+        margin-left: 50px;
+        .map-img {
+            max-height: 200px;
+            width: auto;
+        }
+    }
 
     .user-karma {
         float: right;
@@ -45,7 +54,7 @@
 .user-content {
     width: 100%;
     height: 250px;
-    padding-top: 60px;
+    padding-top: 100px;
 
     .sidebar {
         color: white;

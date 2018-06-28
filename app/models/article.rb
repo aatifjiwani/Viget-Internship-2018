@@ -1,5 +1,7 @@
 class Article < ApplicationRecord
   
+  attr_accessor :should_locate
+  
   validates :title, presence: true, length: { minimum: 5 }
 
   validates :body, presence: true

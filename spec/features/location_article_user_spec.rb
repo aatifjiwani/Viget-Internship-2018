@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Getting the current location via IP address', type: :feature do
-  describe "getting the location when signing up" do
+  describe "getting the location when signing up", :vcr do
     before do
       visit new_user_path
       fill_in 'Username:', with: 'locationuser'
@@ -19,7 +19,7 @@ RSpec.describe 'Getting the current location via IP address', type: :feature do
     end
   end
   
-  describe "getting the location when posting an article" do
+  describe "getting the location when posting an article", :vcr do
     before do
       login_user
       visit new_article_path

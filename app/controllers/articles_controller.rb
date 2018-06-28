@@ -39,9 +39,8 @@ class ArticlesController < ApplicationController
     @current_user = current_user
     @article = @current_user.articles.new(article_params)
     
-    if params[:article][:location]
-      api_request = HTTP.get(location_api_url).as_json
-      @article.location = get_only_location(JSON.parse(api_request["body"][0]))
+   if params[:article][:should_locate]
+      @article.location = Geolocater.new(request.remote_ip).location
     end
       
     if @article.save
