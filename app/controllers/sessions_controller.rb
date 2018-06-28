@@ -40,9 +40,7 @@ class SessionsController < ApplicationController
       if @profile_img
         @user.profile_img.attach(io: @profile_img, filename: "#{user_params[:username]}profileimg.jpeg")
       end
-
-      binding.pry
-
+      
       if @user.save
         OAuthUser.create(username: @user.username, email: @user.email, provider: @response["provider"])
         session[:user_id] = @user.id
