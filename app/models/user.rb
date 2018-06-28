@@ -1,8 +1,9 @@
 class User < ApplicationRecord
   include VotesHelper
-  
+
   attr_accessor :should_locate
 
+  attr_accessor :bypass_creation, :oauth_creation
   
   #EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -12,7 +13,9 @@ class User < ApplicationRecord
 
   has_one_attached :profile_img
 
-  has_secure_password
+  has_secure_password validations: false
+  validates_confirmation_of :password, unless: :oauth?
+  validates :password, presence: true, unless: :bypass?
   
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -27,5 +30,13 @@ class User < ApplicationRecord
       @count += total_votes(article)
     end
     @count + Vote.where(user: self).count
+  end
+  
+  def bypass?
+    bypass_creation
+  end
+  
+  def oauth?
+    oauth_creation
   end
 end

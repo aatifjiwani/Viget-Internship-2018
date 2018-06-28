@@ -5,14 +5,16 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(username: params[:username])
-
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_to articles_path
-    else
-      render 'new'
+    unless params[:password].strip.empty? 
+      user = User.find_by(username: params[:username])
+      if user && user.authenticate(params[:password])
+        session[:user_id] = user.id
+        redirect_to articles_path
+      end
     end
+    
+    flash[:alert] = "Invalid username or password."
+    render 'new'
   end
 
   def redirect
@@ -29,16 +31,18 @@ class SessionsController < ApplicationController
     
     binding.pry
     
-    @user = User.new(user_params.merge(password: "secret"))
+    
+    @user = User.new(user_params)
+    @user.oauth_creation = true
+    @user.bypass_creation = true
     if @profile_img
       @user.profile_img.attach(io: @profile_img, filename: "#{user_params[:username]}profileimg.jpeg")
     end
     
-    binding.pry
-    
     if @user.save
-      binding.pry
       session[:user_id] = @user.id
+      @user.oauth_creation = false
+      @user.bypass_creation = false
       redirect_to articles_path
     end
   end

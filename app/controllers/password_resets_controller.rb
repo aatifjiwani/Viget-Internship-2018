@@ -6,6 +6,7 @@ class PasswordResetsController < ApplicationController
   def create
     @user = User.find_by(email: params[:email])
     if @user
+      @user.bypass_creation = true;
       @user.regenerate_password_token
       flash[:notice] = "We've sent a reset password link to the given email."
       PasswordResetMailer.with(user: @user, token: @user.password_token).reset_email.deliver_later
@@ -35,6 +36,7 @@ class PasswordResetsController < ApplicationController
       @user.regenerate_password_token
       reset_session
       flash[:notice] = "Successfully updated password."
+      @user.bypass_creation = false;
       redirect_to new_sessions_path
     else
       flash[:alert] = "Passwords do not match. Try again."
