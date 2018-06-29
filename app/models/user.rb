@@ -24,6 +24,11 @@ class User < ApplicationRecord
   
   has_many :votes, dependent: :destroy
   
+  has_one :o_auth_user, dependent: :destroy
+  
+  scope :check_email, -> (email) { where(email: email) }
+  scope :check_name, -> (username) { where(username: username) }
+  
   def user_karma
     @count = 0
     self.articles.each do |article|
