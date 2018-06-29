@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   include VotesHelper
-<<<<<<< HEAD
-
+  
   attr_accessor :should_locate
   
   attr_accessor :update_creation, :oauth_creation

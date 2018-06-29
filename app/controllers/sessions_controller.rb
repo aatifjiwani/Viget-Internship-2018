@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
   def redirect
     @response = auth_hash
     info = @response["info"]
+    #Checking whether the user from provider has already been created thus bypassing everything
     @oauth = OAuthUser.where(email: info["email"]).first
     
     unless @oauth
@@ -34,18 +35,26 @@ class SessionsController < ApplicationController
           }
         @profile_img = grab_image(info["image"])
       end
-
-      @user = User.new(user_params)
-      @user.oauth_creation = true
-      if @profile_img
-        @user.profile_img.attach(io: @profile_img, filename: "#{user_params[:username]}profileimg.jpeg")
-      end
       
-      if @user.save
-        OAuthUser.create(username: @user.username, email: @user.email, provider: @response["provider"])
-        session[:user_id] = @user.id
-        @user.oauth_creation = false
-        redirect_to articles_path
+      #Checking whether or not the user already exists based on given parameters from provider
+      @user_with_name = User.where(username: user_params[:username]).first
+      @user_with_email = User.where(email: user_params[:email]).first
+      unless @user_with_name || @user_with_email
+        @user = User.new(user_params)
+        @user.oauth_creation = true
+        if @profile_img
+          @user.profile_img.attach(io: @profile_img, filename: "#{user_params[:username]}profileimg.jpeg")
+        end
+                
+        if @user.save
+          OAuthUser.create(username: @user.username, email: @user.email, provider: @response["provider"])
+          session[:user_id] = @user.id
+          @user.oauth_creation = false
+          redirect_to articles_path
+        end
+      else
+        flash[:alert] = "User already exists. Please sign in natively."
+        redirect_to new_sessions_path
       end
     else
       session[:user_id] = User.where(email: @oauth.email).first.id

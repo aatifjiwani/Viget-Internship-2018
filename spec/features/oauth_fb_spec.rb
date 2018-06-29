@@ -32,4 +32,18 @@ RSpec.describe 'Signing in to Facebook with OAuth', type: :feature do
       expect(page).to have_content 'Signed in!'
     end
   end
+  
+  describe 'creating user through FB with same existing native user does not work', js: true do
+    before do
+      create(:user, username: 'facebookuser', email: 'facebook@example.com')
+      Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
+      visit new_sessions_path
+      
+    end
+    
+    it 'prompts you to sign in natively through the app' do
+      find('#facebook').click
+      expect(page).to have_content "User already exists. Please sign in natively."
+    end
+  end
 end

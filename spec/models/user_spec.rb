@@ -5,7 +5,6 @@ RSpec.describe User, type: :model do
     expect(User.count).to eq 0
   end
 
-  
   context "has already one user created" do
     let!(:user) {create(:user)}
     
