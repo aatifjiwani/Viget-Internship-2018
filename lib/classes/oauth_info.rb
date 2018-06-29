@@ -7,9 +7,9 @@ class OauthInfo
         }
     elsif provider == 'linkedin'
       user_params = {
-        username: create_username(info["name"]),
-        email: info["email"],
-        location: MapCoordinates.new(info["location"]).coordinates
+        username: create_username(response["name"]),
+        email: response["email"],
+        location: MapCoordinates.new(response["location"]).coordinates
         }
     end
   end

@@ -13,17 +13,23 @@ RSpec.describe 'Signing in to LinkedIn with OAuth', type: :feature do
       user = User.first
       expect(user.username).to eq("linkedinuser")
       expect(user.email).to eq("linkedin@example.com")
+      expect(user.location).to eq({
+        "country_name"=>"USA", 
+        "city"=>"California", 
+        "latitude"=>37.8271784, 
+        "longitude"=>-122.2913078
+        })
     end
 
     it "doesn't allow you to sign in natively" do
       click_on 'Sign Out'
       visit new_sessions_path
-      fill_in 'Username:', with: 'linkedin'
+      fill_in 'Username:', with: 'linkedinuser'
       fill_in 'Password:', with: 'fakepassword'
       within('.li-submit') do
         click_on 'Sign In'
       end
-      expect(page).to have_content "linkedin, please sign in using Linkedin"
+      expect(page).to have_content "linkedinuser, please sign in using Linkedin"
     end
 
     it 'allows you to sign in via Linkedin' do
