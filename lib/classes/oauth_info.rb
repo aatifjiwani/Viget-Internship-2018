@@ -5,9 +5,15 @@ class OauthInfo
         username: create_username(response["name"]),
         email: response["email"]
         }
+    elsif provider == 'linkedin'
+      user_params = {
+        username: create_username(info["name"]),
+        email: info["email"],
+        location: MapCoordinates.new(info["location"]).coordinates
+        }
     end
   end
-  
+
   def getimg(response)
     if response["image"]
       image = grab_image(response["image"])
