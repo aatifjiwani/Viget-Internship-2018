@@ -5,8 +5,9 @@ class MapCoordinates
 
   def coordinates
     response = JSON.parse(HTTP.get(api_url).as_json["body"][0])
+    binding.pry
     city_country = formatted_city_country(response["candidates"][0]["formatted_address"])
-    location = city_country.merge(response["candidates"][0]["geometry"]["location"])
+    location = city_country.merge(formatted_lat_lon(response["candidates"][0]["geometry"]["location"]))
   end
 
   def api_url
@@ -32,6 +33,13 @@ class MapCoordinates
         "city" => split_location[len - 3]
         }
     end
+  end
+  
+  def formatted_lat_lon(coord_hash)
+    formatted_latlon = {
+      "latitude" => coord_hash["lat"],
+      "longitude" => coord_hash["lon"]
+      }
   end
 
 end

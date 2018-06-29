@@ -21,3 +21,13 @@ OmniAuth.config.add_mock(:facebook, {
     'image' => 'https://upload.wikimedia.org/wikipedia/commons/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg'
     }
   })
+
+OmniAuth.config.add_mock(:linkedin, {
+  'provider' => 'linkedin',
+  'info' => {
+    'name' => 'LinkedIn User',
+    'email' => 'linkedin@example.com',
+    'location' => 'San Francisco Bay Area, US',
+    'image' => 'https://upload.wikimedia.org/wikipedia/commons/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg'
+    }
+  })
