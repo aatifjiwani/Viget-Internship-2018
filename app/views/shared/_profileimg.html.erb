@@ -1,5 +1,5 @@
 <% if user.profile_img.attached? %>
   <%= image_tag(url_for(user.profile_img), class: class_name) %>
 <% else %>
-  <%= image_tag("/assets/no-profile-img.jpg", class: class_name) %>
+  <%= image_tag("https://storage.googleapis.com/haxxornews-img-container/no-profile-img.jpg", class: class_name) %>
 <% end %>
