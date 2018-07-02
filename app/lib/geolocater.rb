@@ -10,6 +10,12 @@ class Geolocater
   def location
     api_request = JSON.parse(HTTP.get(api_url).as_json["body"][0])
     response = api_request.slice("country_name", "city", "latitude", "longitude")
+    if !(response["country_name"] && response["city"])
+      response.merge({
+        "country_name" => "US",
+        "city" => "Washington D.C."
+        })
+    end
   end
   
   def api_url
