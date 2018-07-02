@@ -15,6 +15,8 @@ class Geolocater
         "country_name" => "US",
         "city" => "Washington D.C."
         })
+    else
+      response
     end
   end
   
