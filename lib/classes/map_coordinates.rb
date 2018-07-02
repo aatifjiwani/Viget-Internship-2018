@@ -1,18 +1,24 @@
 class MapCoordinates
   def initialize(location)
-    @location = location.gsub(" ", "%20")
+    @location = location
   end
 
   def coordinates
-    response = JSON.parse(HTTP.get(api_url).as_json["body"][0])
-    city_country = formatted_city_country(response["candidates"][0]["formatted_address"])
-    location = city_country.merge(formatted_lat_lon(response["candidates"][0]["geometry"]["location"]))
+    @coordinates ||= city_country.merge(formatted_lat_lon(response["candidates"][0]["geometry"]["location"]))
   end
 
   def api_url
-    "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{@location}&inputtype=textquery&fields=formatted_address,geometry&key=#{Rails.application.credentials.dig(:gcs_map_api_key)}"
+    URI.encode("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{@location}&inputtype=textquery&fields=formatted_address,geometry&key=#{Rails.application.credentials.dig(:gcs_map_api_key)}")
   end
   
+  def response
+    @response ||= JSON.parse(HTTP.get(api_url).as_json["body"][0])
+  end
+  
+  def city_country
+    @city_country ||= formatted_city_country(response["candidates"][0]["formatted_address"])
+  end
+
   def formatted_city_country(location)
     split_location = location.gsub(" ", "").split(",")
     if split_location.length == 2
@@ -33,7 +39,7 @@ class MapCoordinates
         }
     end
   end
-  
+
   def formatted_lat_lon(coord_hash)
     formatted_latlon = {
       "latitude" => coord_hash["lat"],
