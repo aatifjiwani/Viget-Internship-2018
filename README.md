@@ -2,14 +2,14 @@
 <p align="center">An introductory project using Ruby on Rails during my Viget Internship</p>
 <p align="center" style='font-size: 10px;'>
   Current dashboard of Haxxor News:
-<img src='https://storage.googleapis.com/haxxornews-img-container/Screen%20Shot%202018-07-06%20at%201.36.33%20PM.png' width='75%' height='auto'/>
+<img src='https://storage.googleapis.com/githubpictures/dash.png' width='75%' height='auto'/>
 </p>
 
 <br>
 <h3>What I was trying to recreate</h3>
 <p align="center" style='font-size: 10px;'>
   Current dashboard of the real <a href="https://news.ycombinator.com">Hacker News</a>:
-<img src='https://storage.googleapis.com/haxxornews-img-container/Screen%20Shot%202018-07-06%20at%201.33.44%20PM.png' width='75%' height='auto'/>
+<img src='https://storage.googleapis.com/githubpictures/hacker.png' width='75%' height='auto'/>
 </p>
 
 <br>
@@ -31,20 +31,20 @@
 
 <h5 align="center">User profile:</h5>
 <p align="center">
-  <img src='https://storage.googleapis.com/haxxornews-img-container/Screen%20Shot%202018-07-06%20at%201.37.29%20PM.png' width='75%' height='auto'/>
+  <img src='https://storage.googleapis.com/githubpictures/profile.png' width='75%' height='auto'/>
 </p>
 <br>
 <h5 align="center">Single article view:</h5>
 <p align="center">
-  <img src='https://storage.googleapis.com/haxxornews-img-container/Screen%20Shot%202018-07-06%20at%201.37.49%20PM.png' width='75%' height='auto'/>
+  <img src='https://storage.googleapis.com/githubpictures/article.png' width='75%' height='auto'/>
 </p>
 <br>
 <h5 align="center">Sign in view:</h5>
 <p align="center">
-  <img src='https://storage.googleapis.com/haxxornews-img-container/Screen%20Shot%202018-07-06%20at%202.51.42%20PM.png' width='75%' height='auto'/>
+  <img src='https://storage.googleapis.com/githubpictures/signin.png' width='75%' height='auto'/>
 </p>
 <br>
 <h5 align="center">Create an account view:</h5>
 <p align="center">
-  <img src='https://storage.googleapis.com/haxxornews-img-container/Screen%20Shot%202018-07-06%20at%202.51.53%20PM.png' width='75%' height='auto'/>
+  <img src='https://storage.googleapis.com/githubpictures/create.png' width='75%' height='auto'/>
 </p>
